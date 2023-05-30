@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'package:google_fonts/google_fonts.dart';
+
 import 'app_router.dart';
 
 class AppMain extends StatelessWidget {
@@ -11,8 +13,9 @@ class AppMain extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: "Neurothrone",
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        textTheme: GoogleFonts.robotoTextTheme(),
       ),
       routerConfig: router,
     );
