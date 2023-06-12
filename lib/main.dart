@@ -4,7 +4,7 @@ import 'package:flutter/services.dart';
 
 import 'package:google_fonts/google_fonts.dart';
 
-import 'app.dart';
+import 'src/app.dart';
 
 Future<void> main() async {
   // Disable HTTP fetching: fonts are available in assets

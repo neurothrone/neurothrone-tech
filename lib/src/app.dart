@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:google_fonts/google_fonts.dart';
 
-import 'app_router.dart';
+import 'routing/app_router.dart';
 
 class AppMain extends StatelessWidget {
   const AppMain({super.key});

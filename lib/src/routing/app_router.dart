@@ -1,6 +1,6 @@
 import 'package:go_router/go_router.dart';
 
-import 'home_screen.dart';
+import '../features/home/presentation/home_screen.dart';
 
 enum AppRoute {
   home,
