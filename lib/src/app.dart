@@ -12,12 +12,14 @@ class AppMain extends StatelessWidget {
     return MaterialApp.router(
       debugShowCheckedModeBanner: false,
       title: "Neurothrone",
+      routerConfig: router,
       theme: ThemeData(
         useMaterial3: true,
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        textTheme: GoogleFonts.robotoTextTheme(),
+        // textTheme: GoogleFonts.michromaTextTheme(),
+        // textTheme: GoogleFonts.exo2TextTheme(),
+        textTheme: GoogleFonts.audiowideTextTheme(),
       ),
-      routerConfig: router,
     );
   }
 }
