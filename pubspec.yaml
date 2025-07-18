@@ -13,6 +13,12 @@ dependencies:
   # Navigation
   go_router: ^16.0.0
 
+  # State Management
+  flutter_riverpod: ^2.6.1
+
+  flutter_web_plugins:
+    sdk: flutter
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
