@@ -6,21 +6,24 @@ import 'core/navigation/navigation.dart';
 import 'features/home/ui/pages/home_page.dart';
 import 'features/projects/ui/pages/projects_page.dart';
 
-class MainApp extends ConsumerWidget {
+class MainApp extends StatelessWidget {
   const MainApp({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final AppPage currentPage = ref.watch(selectedPageProvider);
-
+  Widget build(BuildContext context) {
     return MaterialApp(
       title: "Neurothrone",
       debugShowCheckedModeBanner: false,
       theme: ThemeData(primarySwatch: Colors.deepPurple),
-      home: switch (currentPage) {
-        AppPage.home => const HomePage(),
-        AppPage.projects => const ProjectsPage(),
-      },
+      home: Consumer(
+        builder: (BuildContext context, WidgetRef ref, Widget? child) {
+          final AppPage currentPage = ref.watch(selectedPageProvider);
+          return switch (currentPage) {
+            AppPage.home => const HomePage(),
+            AppPage.projects => const ProjectsPage(),
+          };
+        },
+      ),
     );
   }
 }
