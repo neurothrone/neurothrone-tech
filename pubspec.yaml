@@ -10,6 +10,9 @@ dependencies:
   flutter:
     sdk: flutter
 
+  # Navigation
+  go_router: ^16.0.0
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
