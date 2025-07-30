@@ -9,6 +9,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  flutter_web_plugins:
+    sdk: flutter
 
   # Navigation
   go_router: ^16.0.0
@@ -16,8 +18,7 @@ dependencies:
   # State Management
   flutter_riverpod: ^2.6.1
 
-  flutter_web_plugins:
-    sdk: flutter
+  package_info_plus: ^8.3.0
 
 dev_dependencies:
   flutter_test:
