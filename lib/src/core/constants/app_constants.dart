@@ -1,0 +1,5 @@
+final class AppConstants {
+  const AppConstants._internal();
+
+  static const String appName = "Neurothrone";
+}
