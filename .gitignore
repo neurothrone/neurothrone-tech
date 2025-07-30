@@ -1,3 +1,11 @@
+# IDE files
+.idea
+.vscode
+
+# Sensitive files
+.env
+http-client.private.env.json
+
 # Miscellaneous
 *.class
 *.log
