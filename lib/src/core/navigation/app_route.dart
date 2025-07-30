@@ -1,4 +1,4 @@
-enum AppPage {
+enum AppRoute {
   home,
   projects,
 }

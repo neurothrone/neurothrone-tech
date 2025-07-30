@@ -1,7 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import 'app_page.dart';
+import 'app_route.dart';
 
-final selectedPageProvider = StateProvider<AppPage>(
-  (ref) => AppPage.home,
+final selectedPageProvider = StateProvider<AppRoute>(
+  (ref) => AppRoute.home,
 );

@@ -8,13 +8,13 @@ class CustomNavigationBar extends ConsumerWidget {
   const CustomNavigationBar({super.key});
 
   static const routes = [
-    AppPage.home,
-    AppPage.projects,
+    AppRoute.home,
+    AppRoute.projects,
   ];
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final AppPage selectedPage = ref.watch(selectedPageProvider);
+    final AppRoute selectedPage = ref.watch(selectedPageProvider);
 
     return NavigationBar(
       selectedIndex: routes.indexOf(selectedPage),

@@ -17,10 +17,10 @@ class MainApp extends StatelessWidget {
       theme: ThemeData(primarySwatch: Colors.deepPurple),
       home: Consumer(
         builder: (BuildContext context, WidgetRef ref, Widget? child) {
-          final AppPage currentPage = ref.watch(selectedPageProvider);
+          final AppRoute currentPage = ref.watch(selectedPageProvider);
           return switch (currentPage) {
-            AppPage.home => const HomePage(),
-            AppPage.projects => const ProjectsPage(),
+            AppRoute.home => const HomePage(),
+            AppRoute.projects => const ProjectsPage(),
           };
         },
       ),
