@@ -2,28 +2,21 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import 'core/constants/constants.dart';
 import 'core/navigation/navigation.dart';
-import 'features/home/ui/pages/home_page.dart';
-import 'features/projects/ui/pages/projects_page.dart';
 
-class MainApp extends StatelessWidget {
+class MainApp extends ConsumerWidget {
   const MainApp({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: "Neurothrone",
+  Widget build(BuildContext context, WidgetRef ref) {
+    final router = ref.watch(goRouterProvider);
+
+    return MaterialApp.router(
+      title: AppConstants.appName,
       debugShowCheckedModeBanner: false,
       theme: ThemeData(primarySwatch: Colors.deepPurple),
-      home: Consumer(
-        builder: (BuildContext context, WidgetRef ref, Widget? child) {
-          final AppRoute currentPage = ref.watch(selectedPageProvider);
-          return switch (currentPage) {
-            AppRoute.home => const HomePage(),
-            AppRoute.projects => const ProjectsPage(),
-          };
-        },
-      ),
+      routerConfig: router,
     );
   }
 }

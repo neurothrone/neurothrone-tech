@@ -1,0 +1,49 @@
+import 'package:flutter/material.dart';
+
+import 'package:go_router/go_router.dart';
+
+import '../../features/home/ui/pages/home_page.dart';
+import '../../features/projects/project_detail/ui/project_detail_page.dart';
+import '../../features/projects/project_list/ui/projects_page.dart';
+import '../../features/settings/ui/pages/settings_page.dart';
+import 'app_route.dart';
+import 'transitions.dart';
+
+final List<GoRoute> appRoutes = [
+  GoRoute(
+    path: "/",
+    name: AppRoute.home.name,
+    pageBuilder: (_, state) => fadeTransitionPage(
+      state: state,
+      child: const HomePage(),
+    ),
+  ),
+  GoRoute(
+    path: "/projects",
+    name: AppRoute.projects.name,
+    pageBuilder: (_, state) => fadeTransitionPage(
+      state: state,
+      child: const ProjectsPage(),
+    ),
+    routes: [
+      GoRoute(
+        path: "projects/:id",
+        name: AppRoute.projectDetail.name,
+        pageBuilder: (context, state) {
+          final projectId = state.pathParameters["id"] ?? "";
+          return MaterialPage(
+            child: ProjectDetailPage(projectId: projectId),
+          );
+        },
+      ),
+    ],
+  ),
+  GoRoute(
+    path: "/settings",
+    name: AppRoute.settings.name,
+    pageBuilder: (_, state) => fadeTransitionPage(
+      state: state,
+      child: const SettingsPage(),
+    ),
+  ),
+];

@@ -2,16 +2,16 @@ import 'package:flutter/material.dart';
 
 import '../../../../core/ui/widgets/widgets.dart';
 
-class ProjectsPage extends StatelessWidget {
-  const ProjectsPage({super.key});
+class SettingsPage extends StatelessWidget {
+  const SettingsPage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-      appBar: CustomAppBar(title: "Projects"),
-      bottomNavigationBar: CustomNavigationBar(),
+      appBar: CustomAppBar(title: "Settings"),
+      drawer: AppDrawer(),
       body: Center(
-        child: Text("Projects"),
+        child: Text("Settings"),
       ),
     );
   }
