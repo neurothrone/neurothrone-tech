@@ -55,7 +55,7 @@ class ProjectsPageBody extends ConsumerWidget {
     return reportsAsyncState.when(
       data: (result) {
         if (result.projects.isEmpty) {
-          return const CenteredPlaceholderText(text: "No reports found.");
+          return const CenteredPlaceholderText(text: "No projects found.");
         }
         return ProjectListView(items: result.projects);
       },
