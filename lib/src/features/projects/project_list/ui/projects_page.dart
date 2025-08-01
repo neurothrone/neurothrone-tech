@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../../core/navigation/navigation.dart';
 import '../../../../core/ui/widgets/widgets.dart';
 import '../state/project_list_state.dart';
 import '../state/providers.dart';
@@ -12,9 +13,9 @@ class ProjectsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: CustomAppBar(title: "Projects"),
-      drawer: const AppDrawer(),
+    return AppScaffold(
+      title: "Projects",
+      activeRoute: AppRoute.projects,
       body: const ProjectsPageBody(),
       persistentFooterButtons: [
         Consumer(

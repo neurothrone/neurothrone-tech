@@ -8,7 +8,12 @@ import '../../navigation/navigation.dart';
 import 'app_version_label.dart';
 
 class AppDrawer extends StatelessWidget {
-  const AppDrawer({super.key});
+  const AppDrawer({
+    super.key,
+    this.activeRoute = AppRoute.unknown,
+  });
+
+  final AppRoute activeRoute;
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +44,12 @@ class AppDrawer extends StatelessWidget {
 }
 
 class DrawerMenuList extends ConsumerWidget {
-  const DrawerMenuList({super.key});
+  const DrawerMenuList({
+    super.key,
+    this.activeRoute = AppRoute.unknown,
+  });
+
+  final AppRoute activeRoute;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -62,6 +72,7 @@ class DrawerMenuList extends ConsumerWidget {
         ListTile(
           leading: const Icon(Icons.home_rounded),
           title: const Text("Home"),
+          selected: activeRoute == AppRoute.home,
           onTap: () {
             context.goNamed(AppRoute.home.name);
             Navigator.pop(context);
@@ -70,6 +81,7 @@ class DrawerMenuList extends ConsumerWidget {
         ListTile(
           leading: const Icon(Icons.manage_search_rounded),
           title: const Text("Projects"),
+          selected: activeRoute == AppRoute.projects,
           onTap: () {
             context.goNamed(AppRoute.projects.name);
             Navigator.pop(context);
@@ -78,6 +90,7 @@ class DrawerMenuList extends ConsumerWidget {
         ListTile(
           leading: const Icon(Icons.settings_rounded),
           title: const Text("Settings"),
+          selected: activeRoute == AppRoute.settings,
           onTap: () {
             context.goNamed(AppRoute.settings.name);
             Navigator.pop(context);
