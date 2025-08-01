@@ -3,4 +3,5 @@ enum AppRoute {
   projects,
   projectDetail,
   settings,
+  unknown,
 }
