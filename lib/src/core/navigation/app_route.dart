@@ -1,7 +1,11 @@
 enum AppRoute {
   home,
   projects,
-  projectDetail,
   settings,
-  unknown,
+  projectDetail,
+  unknown;
+
+  static AppRoute fromIndex(int index) {
+    return AppRoute.values[index];
+  }
 }

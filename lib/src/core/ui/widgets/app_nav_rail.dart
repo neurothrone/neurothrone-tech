@@ -11,12 +11,6 @@ class AppNavRail extends ConsumerWidget {
     required this.activeRoute,
   });
 
-  static const _routes = [
-    AppRoute.home,
-    AppRoute.projects,
-    AppRoute.settings,
-  ];
-
   final AppRoute activeRoute;
 
   @override
@@ -24,9 +18,9 @@ class AppNavRail extends ConsumerWidget {
     return NavigationRail(
       groupAlignment: -1.0,
       backgroundColor: Colors.deepPurpleAccent,
-      selectedIndex: _routes.indexOf(activeRoute),
+      selectedIndex: activeRoute.index,
       onDestinationSelected: (int index) {
-        final route = _routes[index];
+        final route = AppRoute.fromIndex(index);
         context.goNamed(route.name);
       },
       labelType: NavigationRailLabelType.all,
