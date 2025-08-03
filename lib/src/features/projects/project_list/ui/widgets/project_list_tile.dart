@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
-import '../../../project_detail/ui/project_detail_page.dart';
+import 'package:go_router/go_router.dart';
+
+import '../../../../../core/navigation/navigation.dart';
 import '../../../shared/data/models/models.dart';
 
 class ProjectListTile extends StatelessWidget {
@@ -15,11 +17,16 @@ class ProjectListTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListTile(
       onTap: () {
-        Navigator.of(context).push(
-          MaterialPageRoute<void>(
-            fullscreenDialog: true,
-            builder: (_) => ProjectDetailPage(projectSlug: item.slug),
-          ),
+        // Navigator.of(context).push(
+        //   MaterialPageRoute<void>(
+        //     fullscreenDialog: true,
+        //     builder: (_) => ProjectDetailPage(projectSlug: item.slug),
+        //   ),
+        // );
+
+        context.goNamed(
+          AppRoute.projectDetail.name,
+          pathParameters: {"slug": item.slug},
         );
       },
       leading: Icon(
