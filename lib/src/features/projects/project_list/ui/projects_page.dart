@@ -16,6 +16,23 @@ class ProjectsPage extends StatelessWidget {
     return AppScaffold(
       title: "Projects",
       activeRoute: AppRoute.projects,
+      actions: [
+        Consumer(
+          builder: (context, ref, _) {
+            final reportsAsyncState = ref.watch(projectListProvider);
+            final isLoading = reportsAsyncState.isLoading;
+
+            return IconButton(
+              icon: const Icon(Icons.refresh_rounded),
+              onPressed: isLoading
+                  ? null
+                  : () =>
+                        ref.read(projectListProvider.notifier).searchReports(),
+              tooltip: "Refresh Projects",
+            );
+          },
+        ),
+      ],
       body: const ProjectsPageBody(),
       persistentFooterButtons: [
         Consumer(
