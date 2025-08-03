@@ -1,6 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../utils/utils.dart';
+import 'project_details.dart';
 
 part 'project_item.freezed.dart';
 
@@ -19,4 +20,12 @@ abstract class ProjectItem with _$ProjectItem {
 
   factory ProjectItem.fromJson(Map<String, dynamic> json) =>
       _$ProjectItemFromJson(json);
+
+  factory ProjectItem.fromDetails(ProjectDetails details) => ProjectItem(
+    slug: details.slug,
+    title: details.title,
+    description: details.description,
+    imageUrl: details.imageUrl,
+    createdDate: details.createdDate,
+  );
 }
