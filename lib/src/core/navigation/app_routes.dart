@@ -32,7 +32,7 @@ final List<GoRoute> appRoutes = [
         pageBuilder: (context, state) {
           final projectId = state.pathParameters["id"] ?? "";
           return MaterialPage(
-            child: ProjectDetailPage(projectId: projectId),
+            child: ProjectDetailPage(projectSlug: projectId),
           );
         },
       ),
