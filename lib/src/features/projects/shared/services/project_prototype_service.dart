@@ -49,7 +49,6 @@ final class ProjectPrototypeService implements ProjectNetworkService {
     String? query,
   }) async {
     await Future.delayed(const Duration(seconds: 1));
-
     await loadProjects();
 
     try {
@@ -87,12 +86,11 @@ final class ProjectPrototypeService implements ProjectNetworkService {
     required String slug,
   }) async {
     await Future.delayed(const Duration(seconds: 1));
+    await loadProjects();
 
     try {
       final project = _projects.firstWhereOrNull((p) => p.slug == slug);
-      return project == null
-          ? Result.failure(error: NetworkFailure.notFound)
-          : Result.success(value: project);
+      return Result.success(value: project);
     } catch (_) {
       return Result.failure(error: NetworkFailure.unknownError);
     }
