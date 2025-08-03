@@ -13,7 +13,7 @@ final projectListProvider =
     StateNotifierProvider<ProjectListController, AsyncValue<ProjectListState>>((
       ref,
     ) {
-      final ProjectNetworkService service = ref.watch(
+      final ProjectNetworkService service = ref.read(
         projectServiceProvider,
       );
       return ProjectListController(service: service);
