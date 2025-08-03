@@ -9,11 +9,11 @@ import 'project_list_state.dart';
 final class ProjectListController
     extends StateNotifier<AsyncValue<ProjectListState>> {
   ProjectListController({
-    required ProjectNetworkService projectService,
-  }) : _projectService = projectService,
+    required ProjectNetworkService service,
+  }) : _service = service,
        super(AsyncValue.data(ProjectListState.initial()));
 
-  final ProjectNetworkService _projectService;
+  final ProjectNetworkService _service;
 
   Future<void> searchReports({
     int page = 1,
@@ -23,7 +23,7 @@ final class ProjectListController
     state = const AsyncLoading();
 
     try {
-      final result = await _projectService.searchProjects(
+      final result = await _service.searchProjects(
         page: page,
         pageSize: pageSize,
         query: query,
