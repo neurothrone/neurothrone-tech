@@ -52,7 +52,7 @@ class ProjectApiService extends DioNetworkService
       );
     } on DioException catch (e) {
       return Result.failure(error: mapDioExceptionToNetworkFailure(e));
-    } catch (e) {
+    } catch (_) {
       return Result.failure(error: NetworkFailure.unknownError);
     }
   }
@@ -83,7 +83,7 @@ class ProjectApiService extends DioNetworkService
       );
     } on DioException catch (e) {
       return Result.failure(error: mapDioExceptionToNetworkFailure(e));
-    } catch (e) {
+    } catch (_) {
       return Result.failure(error: NetworkFailure.unknownError);
     }
   }
