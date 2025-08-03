@@ -50,6 +50,8 @@ final class ProjectPrototypeService implements ProjectNetworkService {
   }) async {
     await Future.delayed(const Duration(seconds: 1));
 
+    await loadProjects();
+
     try {
       // Filter projects based on the query
       query = query?.trim().toLowerCase();
