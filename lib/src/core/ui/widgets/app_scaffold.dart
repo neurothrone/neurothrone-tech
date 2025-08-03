@@ -8,12 +8,14 @@ class AppScaffold extends StatelessWidget {
     super.key,
     required this.title,
     required this.body,
+    this.actions,
     this.persistentFooterButtons,
     this.activeRoute = AppRoute.unknown,
   });
 
   final String title;
   final Widget body;
+  final List<Widget>? actions;
   final List<Widget>? persistentFooterButtons;
   final AppRoute activeRoute;
 
@@ -22,11 +24,10 @@ class AppScaffold extends StatelessWidget {
     final isMobile = MediaQuery.sizeOf(context).width < 600;
 
     return Scaffold(
-      appBar: isMobile
-          ? CustomAppBar(
-              title: title,
-            )
-          : null,
+      appBar: CustomAppBar(
+        title: title,
+        actions: actions,
+      ),
       drawer: isMobile ? AppDrawer(activeRoute: activeRoute) : null,
       body: isMobile
           ? body
