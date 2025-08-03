@@ -1,0 +1,142 @@
+[
+  {
+    "slug": "project-alpha",
+    "title": "Project Alpha",
+    "description": "The first and most groundbreaking project.",
+    "image-url": "https://example.com/images/alpha.png",
+    "created-date": "2023-01-15"
+  },
+  {
+    "slug": "project-beta",
+    "title": "Project Beta",
+    "description": "A follow-up to Alpha, with new features.",
+    "image-url": "https://example.com/images/beta.png",
+    "created-date": "2023-03-22"
+  },
+  {
+    "slug": "project-gamma",
+    "title": "Project Gamma",
+    "description": "Exploring advanced concepts.",
+    "image-url": "https://example.com/images/gamma.png",
+    "created-date": "2023-05-30"
+  },
+  {
+    "slug": "project-delta",
+    "title": "Project Delta",
+    "description": "Focused on scalability and performance.",
+    "image-url": null,
+    "created-date": "2023-07-10"
+  },
+  {
+    "slug": "project-epsilon",
+    "title": "Project Epsilon",
+    "description": "User interface and experience enhancements.",
+    "image-url": "https://example.com/images/epsilon.png",
+    "created-date": "2023-09-05"
+  },
+  {
+    "slug": "project-zeta",
+    "title": "Project Zeta",
+    "description": "Security and data integrity project.",
+    "image-url": "https://example.com/images/zeta.png",
+    "created-date": "2023-11-12"
+  },
+  {
+    "slug": "project-eta",
+    "title": "Project Eta",
+    "description": "A project about project management itself.",
+    "image-url": null,
+    "created-date": "2024-01-20"
+  },
+  {
+    "slug": "project-theta",
+    "title": "Project Theta",
+    "description": "Research and development initiative.",
+    "image-url": "https://example.com/images/theta.png",
+    "created-date": "2024-02-28"
+  },
+  {
+    "slug": "project-iota",
+    "title": "Project Iota",
+    "description": "Small but significant improvements.",
+    "image-url": "https://example.com/images/iota.png",
+    "created-date": "2024-04-15"
+  },
+  {
+    "slug": "project-kappa",
+    "title": "Project Kappa",
+    "description": "Integration with third-party services.",
+    "image-url": "https://example.com/images/kappa.png",
+    "created-date": "2024-06-01"
+  },
+  {
+    "slug": "project-lambda",
+    "title": "Project Lambda",
+    "description": "Backend architecture overhaul.",
+    "image-url": null,
+    "created-date": "2024-07-18"
+  },
+  {
+    "slug": "project-mu",
+    "title": "Project Mu",
+    "description": "Mobile application development.",
+    "image-url": "https://example.com/images/mu.png",
+    "created-date": "2024-09-03"
+  },
+  {
+    "slug": "project-nu",
+    "title": "Project Nu",
+    "description": "A completely new direction and product.",
+    "image-url": "https://example.com/images/nu.png",
+    "created-date": "2024-10-25"
+  },
+  {
+    "slug": "project-xi",
+    "title": "Project Xi",
+    "description": "Data analysis and reporting features.",
+    "image-url": "https://example.com/images/xi.png",
+    "created-date": "2024-12-05"
+  },
+  {
+    "slug": "project-omicron",
+    "title": "Project Omicron",
+    "description": "Community building and outreach program.",
+    "image-url": null,
+    "created-date": "2025-01-30"
+  },
+  {
+    "slug": "project-pi",
+    "title": "Project Pi",
+    "description": "Educational resources and tutorials.",
+    "image-url": "https://example.com/images/pi.png",
+    "created-date": "2025-03-14"
+  },
+  {
+    "slug": "project-rho",
+    "title": "Project Rho",
+    "description": "Refining existing functionalities.",
+    "image-url": "https://example.com/images/rho.png",
+    "created-date": "2025-05-01"
+  },
+  {
+    "slug": "project-sigma",
+    "title": "Project Sigma",
+    "description": "Internal tools and process optimization.",
+    "image-url": "https://example.com/images/sigma.png",
+    "created-date": "2025-06-20"
+  },
+  {
+    "slug": "project-tau",
+    "title": "Project Tau",
+    "description": "Testing and quality assurance improvements.",
+    "image-url": null,
+    "created-date": "2025-08-10"
+  },
+  {
+    "slug": "project-upsilon",
+    "title": "Project Upsilon",
+    "description": "The ultimate project, combining all learnings.",
+    "image-url": "https://example.com/images/upsilon.png",
+    "created-date": "2025-10-01"
+  }
+]
