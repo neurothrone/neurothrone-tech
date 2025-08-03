@@ -9,7 +9,7 @@ import '../../features/settings/ui/pages/settings_page.dart';
 import 'app_route.dart';
 import 'transitions.dart';
 
-final List<GoRoute> appRoutes = [
+final List<GoRoute> routes = [
   GoRoute(
     path: "/",
     name: AppRoute.home.name,
