@@ -30,7 +30,7 @@ class ProjectListTile extends StatelessWidget {
         );
       },
       leading: Icon(
-        Icons.report_problem_outlined,
+        Icons.folder_open_rounded,
         color: Theme.of(context).colorScheme.primary,
       ),
       title: Text(
