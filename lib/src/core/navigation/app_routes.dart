@@ -27,12 +27,12 @@ final List<GoRoute> appRoutes = [
     ),
     routes: [
       GoRoute(
-        path: "projects/:id",
+        path: ":slug",
         name: AppRoute.projectDetail.name,
         pageBuilder: (context, state) {
-          final projectId = state.pathParameters["id"] ?? "";
+          final slug = state.pathParameters["slug"] ?? "";
           return MaterialPage(
-            child: ProjectDetailPage(projectSlug: projectId),
+            child: ProjectDetailPage(projectSlug: slug),
           );
         },
       ),
