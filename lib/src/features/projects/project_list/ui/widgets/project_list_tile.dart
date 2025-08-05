@@ -29,8 +29,12 @@ class ProjectListTile extends StatelessWidget {
         style: const TextStyle(
           fontWeight: FontWeight.w600,
         ),
+        overflow: TextOverflow.ellipsis,
       ),
-      subtitle: Text(item.description),
+      subtitle: Text(
+        item.description,
+        overflow: TextOverflow.ellipsis,
+      ),
       trailing: const Icon(Icons.chevron_right_rounded),
     );
   }
