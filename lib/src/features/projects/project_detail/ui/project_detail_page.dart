@@ -5,6 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../../core/ui/widgets/widgets.dart';
 import '../../shared/data/models/models.dart';
 import '../state/providers.dart';
+import 'widgets/project_details_view.dart';
 
 class ProjectDetailPage extends StatelessWidget {
   const ProjectDetailPage({
@@ -45,25 +46,7 @@ class ProjectDetailBody extends ConsumerWidget {
             )
           : Padding(
               padding: const EdgeInsets.all(16.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    project.title,
-                    style: Theme.of(context).textTheme.headlineLarge,
-                  ),
-                  const SizedBox(height: 8.0),
-                  Text(
-                    project.description,
-                    style: Theme.of(context).textTheme.bodyMedium,
-                  ),
-                  const SizedBox(height: 16.0),
-                  Text(
-                    "Created date: ${project.createdDate}",
-                    style: Theme.of(context).textTheme.headlineSmall,
-                  ),
-                ],
-              ),
+              child: ProjectDetailsView(project: project),
             ),
       loading: () => const Center(child: CircularProgressIndicator()),
       error: (error, stackTrace) => Center(
