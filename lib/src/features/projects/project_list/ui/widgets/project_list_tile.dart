@@ -16,19 +16,10 @@ class ProjectListTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      onTap: () {
-        // Navigator.of(context).push(
-        //   MaterialPageRoute<void>(
-        //     fullscreenDialog: true,
-        //     builder: (_) => ProjectDetailPage(projectSlug: item.slug),
-        //   ),
-        // );
-
-        context.goNamed(
-          AppRoute.projectDetail.name,
-          pathParameters: {"slug": item.slug},
-        );
-      },
+      onTap: () => context.goNamed(
+        AppRoute.projectDetail.name,
+        pathParameters: {"slug": item.slug},
+      ),
       leading: Icon(
         Icons.folder_open_rounded,
         color: Theme.of(context).colorScheme.primary,
