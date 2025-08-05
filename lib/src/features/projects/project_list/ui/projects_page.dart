@@ -4,8 +4,11 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../core/navigation/navigation.dart';
 import '../../../../core/ui/widgets/widgets.dart';
+import '../domain/project_view_mode.dart';
 import '../state/project_list_state.dart';
 import '../state/providers.dart';
+import 'widgets/project_grid_view.dart';
+import 'widgets/project_view_mode_switcher.dart';
 import 'widgets/project_list_view.dart';
 
 class ProjectsPage extends StatelessWidget {
@@ -17,6 +20,7 @@ class ProjectsPage extends StatelessWidget {
       title: "Projects",
       activeRoute: AppRoute.projects,
       actions: [
+        const ProjectViewModeSwitcher(),
         Consumer(
           builder: (context, ref, _) {
             final reportsAsyncState = ref.watch(projectListProvider);
@@ -69,11 +73,18 @@ class ProjectsPageBody extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final reportsAsyncState = ref.watch(projectListProvider);
+    final viewMode = ref.watch(projectViewModeProvider);
 
     return reportsAsyncState.when(
-      data: (result) => result.projects.isEmpty
-          ? const CenteredPlaceholderText(text: "No projects found.")
-          : ProjectListView(items: result.projects),
+      data: (ProjectListState state) {
+        if (state.projects.isEmpty) {
+          return const CenteredPlaceholderText(text: "No projects found.");
+        }
+
+        return viewMode == ProjectViewMode.list
+            ? ProjectListView(items: state.projects)
+            : ProjectGridView(items: state.projects);
+      },
       error: (e, _) => CenteredErrorText(errorMessage: e.toString()),
       loading: () => const CenteredProgressIndicator(),
     );
