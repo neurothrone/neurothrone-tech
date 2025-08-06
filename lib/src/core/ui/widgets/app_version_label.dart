@@ -16,10 +16,12 @@ class AppVersionLabel extends ConsumerWidget {
       child: DefaultTextStyle(
         maxLines: 1,
         overflow: TextOverflow.ellipsis,
-        style: const TextStyle(
-          fontSize: 12,
-          color: Colors.grey,
-        ),
+        style:
+            Theme.of(context).textTheme.bodySmall ??
+            const TextStyle(
+              fontSize: 12,
+              color: Colors.grey,
+            ),
         child: versionAsync.when(
           data: (version) => Text(version),
           error: (_, _) {
