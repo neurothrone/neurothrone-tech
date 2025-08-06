@@ -104,6 +104,7 @@ final ThemeData appTheme = ThemeData(
       fontSize: 12,
     ),
   ),
+  // Button themes
   elevatedButtonTheme: ElevatedButtonThemeData(
     style: ButtonStyle(
       padding: WidgetStateProperty.all(
@@ -122,6 +123,14 @@ final ThemeData appTheme = ThemeData(
       shadowColor: WidgetStateProperty.all(Colors.transparent),
       foregroundColor: WidgetStateProperty.all(Colors.white),
       overlayColor: WidgetStateProperty.all(Colors.white12),
+    ),
+  ),
+  iconButtonTheme: IconButtonThemeData(
+    style: ButtonStyle(
+      foregroundColor: WidgetStateProperty.all(Colors.white70),
+      overlayColor: WidgetStateProperty.all(
+        kPrimaryColor.withValues(alpha: 0.2),
+      ),
     ),
   ),
   textButtonTheme: TextButtonThemeData(

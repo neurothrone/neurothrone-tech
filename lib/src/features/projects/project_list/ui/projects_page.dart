@@ -25,12 +25,13 @@ class ProjectsPage extends StatelessWidget {
             final isLoading = reportsAsyncState.isLoading;
 
             return IconButton(
+              tooltip: "Refresh Projects",
               icon: const Icon(Icons.refresh_rounded),
+              style: Theme.of(context).iconButtonTheme.style,
               onPressed: isLoading
                   ? null
                   : () =>
                         ref.read(projectListProvider.notifier).searchReports(),
-              tooltip: "Refresh Projects",
             );
           },
         ),

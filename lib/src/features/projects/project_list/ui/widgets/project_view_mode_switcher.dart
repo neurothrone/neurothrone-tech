@@ -14,19 +14,20 @@ class ProjectViewModeSwitcher extends ConsumerWidget {
     final notifier = ref.read(projectViewModeProvider.notifier);
 
     return IconButton(
-      onPressed: () {
-        notifier.state = mode == ProjectViewMode.list
-            ? ProjectViewMode.grid
-            : ProjectViewMode.list;
-      },
+      tooltip: mode == ProjectViewMode.list
+          ? "Switch to Grid View"
+          : "Switch to List View",
       icon: Icon(
         mode == ProjectViewMode.list
             ? Icons.grid_view_rounded
             : Icons.view_list_rounded,
       ),
-      tooltip: mode == ProjectViewMode.list
-          ? "Switch to Grid View"
-          : "Switch to List View",
+      style: Theme.of(context).iconButtonTheme.style,
+      onPressed: () {
+        notifier.state = mode == ProjectViewMode.list
+            ? ProjectViewMode.grid
+            : ProjectViewMode.list;
+      },
     );
   }
 }
