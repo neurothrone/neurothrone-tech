@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../navigation/navigation.dart';
 import 'widgets.dart';
 
 class AppScaffold extends StatelessWidget {
@@ -10,14 +9,12 @@ class AppScaffold extends StatelessWidget {
     required this.body,
     this.actions,
     this.persistentFooterButtons,
-    this.activeRoute = AppRoute.unknown,
   });
 
   final String title;
   final Widget body;
   final List<Widget>? actions;
   final List<Widget>? persistentFooterButtons;
-  final AppRoute activeRoute;
 
   @override
   Widget build(BuildContext context) {
@@ -28,12 +25,12 @@ class AppScaffold extends StatelessWidget {
         title: title,
         actions: actions,
       ),
-      drawer: isMobile ? AppDrawer(activeRoute: activeRoute) : null,
+      drawer: isMobile ? AppDrawer() : null,
       body: isMobile
           ? body
           : Row(
               children: [
-                AppNavRail(activeRoute: activeRoute),
+                const AppNavRail(),
                 Expanded(
                   flex: 3,
                   child: body,

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../../core/navigation/navigation.dart';
 import '../../../core/ui/widgets/widgets.dart';
 
 class SettingsPage extends StatelessWidget {
@@ -10,7 +9,6 @@ class SettingsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return AppScaffold(
       title: "Settings",
-      activeRoute: AppRoute.settings,
       body: Center(
         child: Text("Settings"),
       ),

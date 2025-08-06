@@ -1,23 +1,21 @@
 import 'package:flutter/material.dart';
 
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../navigation/navigation.dart';
 
-class AppNavRail extends StatelessWidget {
-  const AppNavRail({
-    super.key,
-    required this.activeRoute,
-  });
-
-  final AppRoute activeRoute;
+class AppNavRail extends ConsumerWidget {
+  const AppNavRail({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final activeRoute = ref.watch(currentRouteProvider);
+
     return NavigationRail(
       groupAlignment: -1.0,
       backgroundColor: Colors.deepPurpleAccent,
-      selectedIndex: activeRoute.index,
+      selectedIndex: getNavRailIndex(activeRoute),
       onDestinationSelected: (int index) {
         final route = AppRoute.fromIndex(index);
         context.goNamed(route.name);

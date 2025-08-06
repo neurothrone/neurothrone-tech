@@ -8,12 +8,7 @@ import '../../navigation/navigation.dart';
 import 'app_version_label.dart';
 
 class AppDrawer extends StatelessWidget {
-  const AppDrawer({
-    super.key,
-    this.activeRoute = AppRoute.unknown,
-  });
-
-  final AppRoute activeRoute;
+  const AppDrawer({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -21,10 +16,8 @@ class AppDrawer extends StatelessWidget {
       child: CustomScrollView(
         slivers: [
           SliverList(
-            delegate: SliverChildListDelegate([
-              DrawerMenuList(
-                activeRoute: activeRoute,
-              ),
+            delegate: SliverChildListDelegate(const [
+              DrawerMenuList(),
             ]),
           ),
           const SliverFillRemaining(
@@ -48,15 +41,12 @@ class AppDrawer extends StatelessWidget {
 }
 
 class DrawerMenuList extends ConsumerWidget {
-  const DrawerMenuList({
-    super.key,
-    this.activeRoute = AppRoute.unknown,
-  });
-
-  final AppRoute activeRoute;
+  const DrawerMenuList({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final activeRoute = ref.watch(currentRouteProvider);
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [

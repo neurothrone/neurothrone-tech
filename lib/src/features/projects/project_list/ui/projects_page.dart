@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../../core/navigation/navigation.dart';
 import '../../../../core/ui/widgets/widgets.dart';
 import '../domain/project_view_mode.dart';
 import '../state/project_list_state.dart';
@@ -18,7 +17,6 @@ class ProjectsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return AppScaffold(
       title: "Projects",
-      activeRoute: AppRoute.projects,
       actions: [
         const ProjectViewModeSwitcher(),
         Consumer(

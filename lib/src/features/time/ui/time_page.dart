@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../../core/navigation/navigation.dart';
 import '../../../core/ui/widgets/widgets.dart';
 
 class TimePage extends StatelessWidget {
@@ -10,7 +9,6 @@ class TimePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return AppScaffold(
       title: "Time",
-      activeRoute: AppRoute.time,
       body: Center(
         child: Text("Time"),
       ),
