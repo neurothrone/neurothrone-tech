@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../../../core/navigation/navigation.dart';
-import '../../../../core/ui/widgets/widgets.dart';
+import '../../../core/navigation/navigation.dart';
+import '../../../core/ui/widgets/widgets.dart';
 
 class SettingsPage extends StatelessWidget {
   const SettingsPage({super.key});

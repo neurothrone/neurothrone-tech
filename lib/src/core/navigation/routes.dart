@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 
 import 'package:go_router/go_router.dart';
 
-import '../../features/home/ui/pages/home_page.dart';
+import '../../features/home/ui/home_page.dart';
 import '../../features/projects/project_detail/ui/project_detail_page.dart';
 import '../../features/projects/project_list/ui/projects_page.dart';
-import '../../features/settings/ui/pages/settings_page.dart';
+import '../../features/settings/ui/settings_page.dart';
 import 'app_route.dart';
 import 'transitions.dart';
 
