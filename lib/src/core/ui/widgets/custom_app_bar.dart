@@ -26,7 +26,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             const Divider(
-              color: borderDivider,
+              color: kDividerBorderColor,
               height: 1,
               thickness: 1,
             ),
