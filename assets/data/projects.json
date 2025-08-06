@@ -138,5 +138,12 @@
     "description": "The ultimate project, combining all learnings.",
     "image-url": "https://example.com/images/upsilon.png",
     "created-date": "2025-10-01"
+  },
+  {
+    "slug": "project-137",
+    "title": "Project 137",
+    "description": "The ultimate project, combining all learnings.",
+    "image-url": "https://example.com/images/upsilon.png",
+    "created-date": "2025-10-01"
   }
 ]
