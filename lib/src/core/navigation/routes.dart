@@ -6,6 +6,7 @@ import '../../features/home/ui/home_page.dart';
 import '../../features/projects/project_detail/ui/project_detail_page.dart';
 import '../../features/projects/project_list/ui/projects_page.dart';
 import '../../features/settings/ui/settings_page.dart';
+import '../../features/time/ui/time_page.dart';
 import 'app_route.dart';
 import 'transitions.dart';
 
@@ -44,6 +45,14 @@ final List<GoRoute> routes = [
     pageBuilder: (_, state) => fadeTransitionPage(
       state: state,
       child: const SettingsPage(),
+    ),
+  ),
+  GoRoute(
+    path: "/time",
+    name: AppRoute.time.name,
+    pageBuilder: (_, state) => fadeTransitionPage(
+      state: state,
+      child: const TimePage(),
     ),
   ),
 ];

@@ -2,6 +2,7 @@ enum AppRoute {
   home,
   projects,
   settings,
+  time,
   projectDetail,
   unknown;
 
