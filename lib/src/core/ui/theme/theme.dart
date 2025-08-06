@@ -33,12 +33,12 @@ final ThemeData appTheme = ThemeData(
     primary: primaryColor,
     // Lighter complementary
     secondary: lightPurple,
-    background: backgroundDark,
+    // 'background' is deprecated and shouldn't be used. Use surface instead.
+    // background: backgroundDark,
     surface: surfaceDark,
     onPrimary: Colors.white,
     onSecondary: Colors.white70,
     onSurface: Colors.white,
-    onBackground: Colors.white,
   ),
   appBarTheme: const AppBarTheme(
     backgroundColor: panelDark,
@@ -57,33 +57,51 @@ final ThemeData appTheme = ThemeData(
       color: primaryColor,
       fontWeight: FontWeight.w400,
     ),
-    unselectedIconTheme: IconThemeData(color: Colors.white.withOpacity(0.6)),
-    unselectedLabelTextStyle: TextStyle(color: Colors.white.withOpacity(0.6)),
-    indicatorColor: primaryColor.withOpacity(0.2),
+    unselectedIconTheme: IconThemeData(
+      color: Colors.white.withValues(alpha: 0.6),
+    ),
+    unselectedLabelTextStyle: TextStyle(
+      color: Colors.white.withValues(alpha: 0.6),
+    ),
+    indicatorColor: primaryColor.withValues(alpha: 0.2),
   ),
   textTheme: TextTheme(
-    bodyLarge: TextStyle(color: Colors.white.withOpacity(0.87)),
-    bodyMedium: TextStyle(color: Colors.white.withOpacity(0.65)),
+    bodyLarge: TextStyle(color: Colors.white.withValues(alpha: 0.87)),
+    bodyMedium: TextStyle(color: Colors.white.withValues(alpha: 0.65)),
     labelLarge: const TextStyle(fontWeight: FontWeight.w500),
   ),
   elevatedButtonTheme: ElevatedButtonThemeData(
     style: ButtonStyle(
-      padding: MaterialStateProperty.all(
+      padding: WidgetStateProperty.all(
         EdgeInsets.symmetric(horizontal: 20, vertical: 12),
       ),
-      shape: MaterialStateProperty.all(
+      shape: WidgetStateProperty.all(
         RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
       ),
-      backgroundColor: MaterialStateProperty.resolveWith((states) {
-        if (states.contains(MaterialState.pressed)) {
+      backgroundColor: WidgetStateProperty.resolveWith((states) {
+        if (states.contains(WidgetState.pressed)) {
           return const Color(0xFF7A00CC); // darker vivid violet
         }
         return null; // fallback to gradient layer
       }),
-      elevation: MaterialStateProperty.all(0),
-      shadowColor: MaterialStateProperty.all(Colors.transparent),
-      foregroundColor: MaterialStateProperty.all(Colors.white),
-      overlayColor: MaterialStateProperty.all(Colors.white12),
+      elevation: WidgetStateProperty.all(0),
+      shadowColor: WidgetStateProperty.all(Colors.transparent),
+      foregroundColor: WidgetStateProperty.all(Colors.white),
+      overlayColor: WidgetStateProperty.all(Colors.white12),
+    ),
+  ),
+  textButtonTheme: TextButtonThemeData(
+    style: ButtonStyle(
+      foregroundColor: WidgetStateProperty.all(Colors.white70),
+      overlayColor: WidgetStateProperty.all(
+        primaryColor.withValues(alpha: 0.2),
+      ),
+      // padding: WidgetStateProperty.all(
+      //   const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+      // ),
+      // shape: WidgetStateProperty.all(
+      //   RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
+      // ),
     ),
   ),
   listTileTheme: ListTileThemeData(
