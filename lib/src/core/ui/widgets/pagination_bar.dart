@@ -26,27 +26,46 @@ class PaginationBar extends StatelessWidget {
       children: [
         IconButton(
           onPressed: enabled && currentPage > 1 ? () => onPageChanged(1) : null,
-          icon: const Icon(Icons.first_page),
+          icon: Icon(
+            Icons.first_page,
+            color: currentPage > 1
+                ? Colors.white
+                : Colors.white.withValues(alpha: 0.3),
+          ),
           tooltip: "First Page",
         ),
+        const SizedBox(width: 4),
         ...pageNumbers.map(
-          (page) => TextButton(
-            onPressed: enabled && page != currentPage
-                ? () => onPageChanged(page)
-                : null,
-            child: Text(
-              page.toString(),
-              style: TextStyle(
-                fontWeight: page == currentPage ? FontWeight.bold : null,
+          (page) => Row(
+            children: [
+              TextButton(
+                onPressed: enabled && page != currentPage
+                    ? () => onPageChanged(page)
+                    : null,
+                child: Text(
+                  page.toString(),
+                  style: TextStyle(
+                    color: enabled && page != currentPage
+                        ? Colors.white
+                        : Colors.white.withValues(alpha: 0.4),
+                    fontWeight: page == currentPage ? FontWeight.bold : null,
+                  ),
+                ),
               ),
-            ),
+              const SizedBox(width: 4),
+            ],
           ),
         ),
         IconButton(
           onPressed: enabled && currentPage < totalPages
               ? () => onPageChanged(totalPages)
               : null,
-          icon: const Icon(Icons.last_page),
+          icon: Icon(
+            Icons.last_page,
+            color: currentPage < totalPages
+                ? Colors.white
+                : Colors.white.withValues(alpha: 0.3),
+          ),
           tooltip: "Last Page",
         ),
       ],
