@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../theme/theme.dart';
+
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   const CustomAppBar({
     super.key,
@@ -24,9 +26,9 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             const Divider(
-              color: Colors.white38,
-              height: 0.5,
-              // thickness: 1,
+              color: borderDivider,
+              height: 1,
+              thickness: 1,
             ),
             bottom!,
           ],
@@ -36,13 +38,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
 
     return AppBar(
       centerTitle: true,
-      title: Text(
-        title,
-        style: const TextStyle(color: Colors.white),
-      ),
-      backgroundColor: Colors.deepPurpleAccent,
-      iconTheme: const IconThemeData(color: Colors.white),
-      actionsIconTheme: const IconThemeData(color: Colors.white),
+      title: Text(title),
       actions: actions,
       actionsPadding: const EdgeInsets.only(right: 6.0),
       bottom: wrappedBottom,
