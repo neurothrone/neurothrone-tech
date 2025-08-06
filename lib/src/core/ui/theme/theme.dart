@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'package:google_fonts/google_fonts.dart';
+
 const Color primaryColor = Color(0xFF9F00FF); // Vivid Violet
 const Color surfaceDark = Color(0xFF1E1E1E);
 const Color backgroundDark = Color(0xFF121212);
@@ -40,12 +42,16 @@ final ThemeData appTheme = ThemeData(
     onSecondary: Colors.white70,
     onSurface: Colors.white,
   ),
-  appBarTheme: const AppBarTheme(
+  appBarTheme: AppBarTheme(
     backgroundColor: panelDark,
     elevation: 0,
-    iconTheme: IconThemeData(color: Colors.white),
-    titleTextStyle: TextStyle(color: Colors.white, fontSize: 20),
-    shape: Border(bottom: borderDividerStyle),
+    iconTheme: const IconThemeData(color: Colors.white),
+    titleTextStyle: GoogleFonts.orbitron(
+      color: Colors.white,
+      fontSize: 20,
+      fontWeight: FontWeight.w600,
+    ),
+    shape: const Border(bottom: borderDividerStyle),
   ),
   drawerTheme: const DrawerThemeData(
     backgroundColor: panelDark,
@@ -53,22 +59,67 @@ final ThemeData appTheme = ThemeData(
   navigationRailTheme: NavigationRailThemeData(
     backgroundColor: panelDark,
     selectedIconTheme: const IconThemeData(color: primaryColor),
-    selectedLabelTextStyle: const TextStyle(
-      color: primaryColor,
-      fontWeight: FontWeight.w400,
-    ),
     unselectedIconTheme: IconThemeData(
       color: Colors.white.withValues(alpha: 0.6),
     ),
-    unselectedLabelTextStyle: TextStyle(
-      color: Colors.white.withValues(alpha: 0.6),
+    selectedLabelTextStyle: GoogleFonts.orbitron(
+      color: primaryColor,
+      fontWeight: FontWeight.w500,
+      fontSize: 14,
+    ),
+    unselectedLabelTextStyle: GoogleFonts.orbitron(
+      color: Colors.white.withValues(alpha: 0.65),
+      fontWeight: FontWeight.w400,
+      fontSize: 14,
     ),
     indicatorColor: primaryColor.withValues(alpha: 0.2),
   ),
-  textTheme: TextTheme(
-    bodyLarge: TextStyle(color: Colors.white.withValues(alpha: 0.87)),
-    bodyMedium: TextStyle(color: Colors.white.withValues(alpha: 0.65)),
-    labelLarge: const TextStyle(fontWeight: FontWeight.w500),
+  textTheme: ThemeData.dark().textTheme.copyWith(
+    displayLarge: GoogleFonts.orbitron(
+      color: Colors.white,
+      fontSize: 32,
+      fontWeight: FontWeight.bold,
+    ),
+    displayMedium: GoogleFonts.orbitron(
+      color: Colors.white,
+      fontSize: 28,
+      fontWeight: FontWeight.bold,
+    ),
+    headlineLarge: GoogleFonts.orbitron(
+      color: Colors.white,
+      fontSize: 24,
+      fontWeight: FontWeight.w600,
+    ),
+    titleLarge: GoogleFonts.orbitron(
+      color: Colors.white,
+      fontSize: 20,
+      fontWeight: FontWeight.w600,
+    ),
+    titleMedium: GoogleFonts.orbitron(
+      color: Colors.white,
+      fontSize: 18,
+      fontWeight: FontWeight.w500,
+    ),
+    labelLarge: GoogleFonts.orbitron(
+      color: Colors.white,
+      fontSize: 14,
+      fontWeight: FontWeight.w500,
+    ),
+    bodyLarge: const TextStyle(
+      fontFamily: "CascadiaCode",
+      color: Colors.white,
+      fontSize: 16,
+    ),
+    bodyMedium: const TextStyle(
+      fontFamily: "CascadiaCode",
+      color: Colors.white70,
+      fontSize: 14,
+    ),
+    bodySmall: const TextStyle(
+      fontFamily: "CascadiaCode",
+      color: Colors.white54,
+      fontSize: 12,
+    ),
   ),
   elevatedButtonTheme: ElevatedButtonThemeData(
     style: ButtonStyle(
