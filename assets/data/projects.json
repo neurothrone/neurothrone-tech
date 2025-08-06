@@ -1,5 +1,12 @@
 [
   {
+    "slug": "project-137",
+    "title": "Project 137",
+    "description": "Last project in the series, focusing on future innovations. An ambitious endeavor that aims to set new standards in the industry.",
+    "image-url": "https://example.com/images/upsilon.png",
+    "created-date": "2025-10-01"
+  },
+  {
     "slug": "project-alpha",
     "title": "Project Alpha",
     "description": "The first and most groundbreaking project.",
@@ -135,13 +142,6 @@
   {
     "slug": "project-upsilon",
     "title": "Project Upsilon",
-    "description": "The ultimate project, combining all learnings.",
-    "image-url": "https://example.com/images/upsilon.png",
-    "created-date": "2025-10-01"
-  },
-  {
-    "slug": "project-137",
-    "title": "Project 137",
     "description": "The ultimate project, combining all learnings.",
     "image-url": "https://example.com/images/upsilon.png",
     "created-date": "2025-10-01"
