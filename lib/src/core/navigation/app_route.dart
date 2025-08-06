@@ -1,8 +1,8 @@
 enum AppRoute {
   home,
   projects,
-  settings,
   time,
+  settings,
   projectDetail,
   unknown;
 

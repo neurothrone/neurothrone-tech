@@ -39,14 +39,14 @@ class AppNavRail extends ConsumerWidget {
             selectedIcon: Icon(Icons.folder_rounded),
           ),
           NavigationRailDestination(
-            label: Text("Settings"),
-            icon: Icon(Icons.settings_outlined),
-            selectedIcon: Icon(Icons.settings_rounded),
-          ),
-          NavigationRailDestination(
             label: Text("Time"),
             icon: Icon(Icons.insert_chart_outlined_rounded),
             selectedIcon: Icon(Icons.insert_chart_rounded),
+          ),
+          NavigationRailDestination(
+            label: Text("Settings"),
+            icon: Icon(Icons.settings_outlined),
+            selectedIcon: Icon(Icons.settings_rounded),
           ),
         ],
       ),

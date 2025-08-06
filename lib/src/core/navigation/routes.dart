@@ -40,19 +40,19 @@ final List<GoRoute> routes = [
     ],
   ),
   GoRoute(
-    path: "/settings",
-    name: AppRoute.settings.name,
-    pageBuilder: (_, state) => fadeTransitionPage(
-      state: state,
-      child: const SettingsPage(),
-    ),
-  ),
-  GoRoute(
     path: "/time",
     name: AppRoute.time.name,
     pageBuilder: (_, state) => fadeTransitionPage(
       state: state,
       child: const TimePage(),
+    ),
+  ),
+  GoRoute(
+    path: "/settings",
+    name: AppRoute.settings.name,
+    pageBuilder: (_, state) => fadeTransitionPage(
+      state: state,
+      child: const SettingsPage(),
     ),
   ),
 ];
