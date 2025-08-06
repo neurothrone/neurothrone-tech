@@ -160,6 +160,17 @@ final ThemeData appTheme = ThemeData(
     selectedTileColor: const Color(0xFF2A2A2A),
     iconColor: Colors.white70,
     textColor: Colors.white70,
+    titleTextStyle: GoogleFonts.orbitron(
+      color: Colors.white,
+      fontSize: 16,
+      fontWeight: FontWeight.w500,
+    ),
+    subtitleTextStyle: const TextStyle(
+      fontFamily: "CascadiaCode",
+      color: Colors.white70,
+      fontSize: 14,
+      overflow: TextOverflow.ellipsis,
+    ),
   ),
   dividerTheme: DividerThemeData(
     color: borderDivider,

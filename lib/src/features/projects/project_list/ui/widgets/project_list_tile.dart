@@ -24,16 +24,18 @@ class ProjectListTile extends StatelessWidget {
         Icons.folder_open_rounded,
         color: Theme.of(context).colorScheme.primary,
       ),
-      title: Text(
-        item.title,
-        style: const TextStyle(
-          fontWeight: FontWeight.w600,
-        ),
-        overflow: TextOverflow.ellipsis,
-      ),
-      subtitle: Text(
-        item.description,
-        overflow: TextOverflow.ellipsis,
+      title: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(item.title, overflow: TextOverflow.ellipsis),
+          const SizedBox(height: 4),
+          Text(
+            item.description,
+            style: Theme.of(context).textTheme.bodySmall,
+            overflow: TextOverflow.ellipsis,
+            maxLines: 2,
+          ),
+        ],
       ),
       trailing: const Icon(Icons.chevron_right_rounded),
     );
