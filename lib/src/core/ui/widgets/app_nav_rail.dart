@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../navigation/navigation.dart';
 
-class AppNavRail extends ConsumerWidget {
+class AppNavRail extends StatelessWidget {
   const AppNavRail({
     super.key,
     required this.activeRoute,
@@ -14,7 +13,7 @@ class AppNavRail extends ConsumerWidget {
   final AppRoute activeRoute;
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
     return NavigationRail(
       groupAlignment: -1.0,
       backgroundColor: Colors.deepPurpleAccent,
@@ -26,19 +25,24 @@ class AppNavRail extends ConsumerWidget {
       labelType: NavigationRailLabelType.all,
       destinations: const [
         NavigationRailDestination(
-          icon: Icon(Icons.home_rounded),
-          selectedIcon: Icon(Icons.home),
           label: Text("Home"),
+          icon: Icon(Icons.home_outlined),
+          selectedIcon: Icon(Icons.home_rounded),
         ),
         NavigationRailDestination(
-          icon: Icon(Icons.manage_search_rounded),
-          selectedIcon: Icon(Icons.manage_search),
           label: Text("Projects"),
+          icon: Icon(Icons.folder_outlined),
+          selectedIcon: Icon(Icons.folder_rounded),
         ),
         NavigationRailDestination(
-          icon: Icon(Icons.settings_rounded),
-          selectedIcon: Icon(Icons.settings),
           label: Text("Settings"),
+          icon: Icon(Icons.settings_outlined),
+          selectedIcon: Icon(Icons.settings_rounded),
+        ),
+        NavigationRailDestination(
+          label: Text("Time"),
+          icon: Icon(Icons.insert_chart_outlined_rounded),
+          selectedIcon: Icon(Icons.insert_chart_rounded),
         ),
       ],
     );

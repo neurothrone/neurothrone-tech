@@ -21,7 +21,11 @@ class AppDrawer extends StatelessWidget {
       child: CustomScrollView(
         slivers: [
           SliverList(
-            delegate: SliverChildListDelegate(const [DrawerMenuList()]),
+            delegate: SliverChildListDelegate([
+              DrawerMenuList(
+                activeRoute: activeRoute,
+              ),
+            ]),
           ),
           const SliverFillRemaining(
             hasScrollBody: false,
@@ -69,34 +73,67 @@ class DrawerMenuList extends ConsumerWidget {
             ),
           ),
         ),
-        ListTile(
-          leading: const Icon(Icons.home_rounded),
-          title: const Text("Home"),
-          selected: activeRoute == AppRoute.home,
-          onTap: () {
-            context.goNamed(AppRoute.home.name);
-            Navigator.pop(context);
-          },
+        DrawerListTile(
+          title: "Home",
+          icon: Icons.home_outlined,
+          selectedIcon: Icons.home_rounded,
+          route: AppRoute.home,
+          activeRoute: activeRoute,
         ),
-        ListTile(
-          leading: const Icon(Icons.manage_search_rounded),
-          title: const Text("Projects"),
-          selected: activeRoute == AppRoute.projects,
-          onTap: () {
-            context.goNamed(AppRoute.projects.name);
-            Navigator.pop(context);
-          },
+        DrawerListTile(
+          title: "Projects",
+          icon: Icons.folder_outlined,
+          selectedIcon: Icons.folder_rounded,
+          route: AppRoute.projects,
+          activeRoute: activeRoute,
         ),
-        ListTile(
-          leading: const Icon(Icons.settings_rounded),
-          title: const Text("Settings"),
-          selected: activeRoute == AppRoute.settings,
-          onTap: () {
-            context.goNamed(AppRoute.settings.name);
-            Navigator.pop(context);
-          },
+        DrawerListTile(
+          title: "Settings",
+          icon: Icons.settings_outlined,
+          selectedIcon: Icons.settings_rounded,
+          route: AppRoute.settings,
+          activeRoute: activeRoute,
+        ),
+        DrawerListTile(
+          title: "Time",
+          icon: Icons.insert_chart_outlined_rounded,
+          selectedIcon: Icons.insert_chart_rounded,
+          route: AppRoute.time,
+          activeRoute: activeRoute,
         ),
       ],
+    );
+  }
+}
+
+class DrawerListTile extends StatelessWidget {
+  const DrawerListTile({
+    super.key,
+    required this.title,
+    required this.icon,
+    required this.selectedIcon,
+    required this.route,
+    required this.activeRoute,
+  });
+
+  final String title;
+  final IconData icon;
+  final IconData selectedIcon;
+  final AppRoute route;
+  final AppRoute activeRoute;
+
+  @override
+  Widget build(BuildContext context) {
+    return ListTile(
+      selected: activeRoute == route,
+      selectedColor: Colors.red,
+      selectedTileColor: Colors.deepPurpleAccent.withValues(alpha: 0.2),
+      leading: Icon(activeRoute == route ? selectedIcon : icon),
+      title: Text(title),
+      onTap: () {
+        context.goNamed(route.name);
+        Navigator.pop(context);
+      },
     );
   }
 }
