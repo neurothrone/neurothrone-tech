@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'core/constants/constants.dart';
 import 'core/navigation/navigation.dart';
+import 'core/ui/theme/theme.dart';
 
 class MainApp extends ConsumerWidget {
   const MainApp({super.key});
@@ -15,7 +16,7 @@ class MainApp extends ConsumerWidget {
     return MaterialApp.router(
       title: AppConstants.appName,
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(primarySwatch: Colors.deepPurple),
+      theme: appTheme,
       routerConfig: router,
     );
   }
