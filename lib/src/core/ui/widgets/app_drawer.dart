@@ -116,8 +116,6 @@ class DrawerListTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListTile(
       selected: activeRoute == route,
-      selectedColor: Colors.red,
-      selectedTileColor: Colors.deepPurpleAccent.withValues(alpha: 0.2),
       leading: Icon(activeRoute == route ? selectedIcon : icon),
       title: Text(title),
       onTap: () {
