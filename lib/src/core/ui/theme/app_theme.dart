@@ -101,7 +101,9 @@ final ThemeData appTheme = ThemeData(
       );
     }),
   ),
-  bottomAppBarTheme: BottomAppBarTheme(),
+  bottomAppBarTheme: BottomAppBarTheme(
+    color: kPanelDarkColor,
+  ),
   textTheme: ThemeData.dark().textTheme.copyWith(
     displayLarge: GoogleFonts.orbitron(
       color: Colors.white,
