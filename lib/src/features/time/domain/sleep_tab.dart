@@ -1,5 +1,9 @@
 enum SleepTab {
   status,
   thisWeek,
-  history,
+  history;
+
+  static SleepTab fromIndex(int index) {
+    return SleepTab.values[index];
+  }
 }
