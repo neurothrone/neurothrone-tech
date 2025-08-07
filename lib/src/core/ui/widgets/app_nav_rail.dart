@@ -6,6 +6,9 @@ import 'package:go_router/go_router.dart';
 import '../../navigation/navigation.dart';
 import '../theme/theme.dart';
 
+const kExpandedNavRailWidth = 100.0;
+const kCollapsedNavRailWidth = 72.0;
+
 final navRailExpandedProvider = StateProvider<bool>((ref) => false);
 final navRailShowLabelsProvider = StateProvider<bool>((ref) => false);
 
@@ -39,7 +42,7 @@ class AppNavRail extends ConsumerWidget {
     final isExpanded = ref.watch(navRailExpandedProvider);
     final showLabels = ref.watch(navRailShowLabelsProvider);
 
-    final double width = isExpanded ? 120 : 72;
+    final double width = isExpanded ? kExpandedNavRailWidth : kCollapsedNavRailWidth;
 
     return AnimatedContainer(
       duration: const Duration(milliseconds: 200),
