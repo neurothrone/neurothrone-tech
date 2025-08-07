@@ -9,12 +9,14 @@ class AppScaffold extends StatelessWidget {
     required this.body,
     this.actions,
     this.persistentFooterButtons,
+    this.bottomNavigationBar,
   });
 
   final String title;
   final Widget body;
   final List<Widget>? actions;
   final List<Widget>? persistentFooterButtons;
+  final Widget? bottomNavigationBar;
 
   @override
   Widget build(BuildContext context) {
@@ -37,6 +39,7 @@ class AppScaffold extends StatelessWidget {
                 ),
               ],
             ),
+      bottomNavigationBar: bottomNavigationBar,
       persistentFooterButtons: persistentFooterButtons,
     );
   }
