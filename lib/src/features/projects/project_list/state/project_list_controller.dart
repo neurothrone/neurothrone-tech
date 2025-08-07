@@ -1,6 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../../core/networking/networking.dart';
 import '../../../../core/utils/utils.dart';
 import '../../shared/data/responses/responses.dart';
 import '../../shared/services/services.dart';
