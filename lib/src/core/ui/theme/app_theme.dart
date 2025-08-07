@@ -57,6 +57,49 @@ final ThemeData appTheme = ThemeData(
     ),
     indicatorColor: kPrimaryColor.withValues(alpha: 0.2),
   ),
+  bottomNavigationBarTheme: BottomNavigationBarThemeData(
+    backgroundColor: kPanelDarkColor,
+    selectedItemColor: kPrimaryColor,
+    unselectedItemColor: Colors.white.withValues(alpha: 0.65),
+    selectedLabelStyle: GoogleFonts.orbitron(
+      color: kPrimaryColor,
+      fontWeight: FontWeight.w500,
+      fontSize: 14,
+    ),
+    unselectedLabelStyle: GoogleFonts.orbitron(
+      color: Colors.white.withValues(alpha: 0.65),
+      fontWeight: FontWeight.w400,
+      fontSize: 14,
+    ),
+    showSelectedLabels: true,
+    showUnselectedLabels: true,
+  ),
+  navigationBarTheme: NavigationBarThemeData(
+    backgroundColor: kPanelDarkColor,
+    indicatorColor: kPrimaryColor.withValues(alpha: 0.2),
+    labelTextStyle: WidgetStateProperty.resolveWith((states) {
+      if (states.contains(WidgetState.selected)) {
+        return GoogleFonts.orbitron(
+          color: kPrimaryColor,
+          fontWeight: FontWeight.w500,
+          fontSize: 14,
+        );
+      }
+      return GoogleFonts.orbitron(
+        color: Colors.white.withValues(alpha: 0.65),
+        fontWeight: FontWeight.w400,
+        fontSize: 14,
+      );
+    }),
+    iconTheme: WidgetStateProperty.resolveWith((states) {
+      if (states.contains(WidgetState.selected)) {
+        return const IconThemeData(color: kPrimaryColor);
+      }
+      return IconThemeData(
+        color: Colors.white.withValues(alpha: 0.6),
+      );
+    }),
+  ),
   textTheme: ThemeData.dark().textTheme.copyWith(
     displayLarge: GoogleFonts.orbitron(
       color: Colors.white,
