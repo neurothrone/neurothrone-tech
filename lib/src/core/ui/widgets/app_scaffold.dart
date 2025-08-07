@@ -33,10 +33,7 @@ class AppScaffold extends StatelessWidget {
           : Row(
               children: [
                 const AppNavRail(),
-                Expanded(
-                  flex: 3,
-                  child: body,
-                ),
+                Expanded(child: body),
               ],
             ),
       bottomNavigationBar: bottomNavigationBar,

@@ -14,10 +14,9 @@ class AppNavRail extends ConsumerWidget {
     final activeRoute = ref.watch(currentRouteProvider);
 
     return Container(
+      width: 100,
       decoration: BoxDecoration(
-        border: Border(
-          right: kBorderSide,
-        ),
+        border: Border(right: kBorderSide),
       ),
       child: NavigationRail(
         groupAlignment: -1.0,
