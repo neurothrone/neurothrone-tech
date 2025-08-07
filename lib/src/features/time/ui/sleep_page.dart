@@ -2,15 +2,15 @@ import 'package:flutter/material.dart';
 
 import '../../../core/ui/widgets/widgets.dart';
 
-class TimePage extends StatelessWidget {
-  const TimePage({super.key});
+class SleepPage extends StatelessWidget {
+  const SleepPage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return AppScaffold(
-      title: "Time",
+      title: "Sleep",
       body: Center(
-        child: Text("Time"),
+        child: Text("Sleep"),
       ),
     );
   }

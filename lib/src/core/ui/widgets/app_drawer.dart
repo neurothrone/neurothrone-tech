@@ -78,10 +78,10 @@ class DrawerMenuList extends ConsumerWidget {
           activeRoute: activeRoute,
         ),
         DrawerListTile(
-          title: "Time",
-          icon: Icons.insert_chart_outlined_rounded,
-          selectedIcon: Icons.insert_chart_rounded,
-          route: AppRoute.time,
+          title: "Sleep",
+          icon: Icons.bedtime_outlined,
+          selectedIcon: Icons.bedtime_rounded,
+          route: AppRoute.sleep,
           activeRoute: activeRoute,
         ),
         DrawerListTile(

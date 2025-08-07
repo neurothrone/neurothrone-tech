@@ -9,7 +9,7 @@ AppRoute getActiveRoute(String location) {
   }
 
   return switch (location) {
-    "/time" => AppRoute.time,
+    "/sleep" => AppRoute.sleep,
     "/settings" => AppRoute.settings,
     "/" => AppRoute.home,
     _ => AppRoute.unknown,
@@ -23,7 +23,7 @@ int getNavRailIndex(AppRoute route) {
     case AppRoute.projects:
     case AppRoute.projectDetail: // Map detail to projects
       return 1;
-    case AppRoute.time:
+    case AppRoute.sleep:
       return 2;
     case AppRoute.settings:
       return 3;
