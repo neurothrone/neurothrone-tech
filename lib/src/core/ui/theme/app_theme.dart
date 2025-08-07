@@ -38,6 +38,7 @@ final ThemeData appTheme = ThemeData(
   ),
   drawerTheme: const DrawerThemeData(
     backgroundColor: kPanelDarkColor,
+    shape: Border(right: kDividerBorderSide),
   ),
   navigationRailTheme: NavigationRailThemeData(
     backgroundColor: kPanelDarkColor,
@@ -100,6 +101,7 @@ final ThemeData appTheme = ThemeData(
       );
     }),
   ),
+  bottomAppBarTheme: BottomAppBarTheme(),
   textTheme: ThemeData.dark().textTheme.copyWith(
     displayLarge: GoogleFonts.orbitron(
       color: Colors.white,
