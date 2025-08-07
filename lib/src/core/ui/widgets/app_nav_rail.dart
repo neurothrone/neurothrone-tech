@@ -12,7 +12,7 @@ const kCollapsedNavRailWidth = 72.0;
 final navRailExpandedProvider = StateProvider<bool>((ref) => false);
 final navRailShowLabelsProvider = StateProvider<bool>((ref) => false);
 
-NavigationRailDestination buildNavRailItem({
+NavigationRailDestination _buildNavRailItem({
   required String label,
   required IconData icon,
   required IconData selectedIcon,
@@ -42,7 +42,9 @@ class AppNavRail extends ConsumerWidget {
     final isExpanded = ref.watch(navRailExpandedProvider);
     final showLabels = ref.watch(navRailShowLabelsProvider);
 
-    final double width = isExpanded ? kExpandedNavRailWidth : kCollapsedNavRailWidth;
+    final double width = isExpanded
+        ? kExpandedNavRailWidth
+        : kCollapsedNavRailWidth;
 
     return AnimatedContainer(
       duration: const Duration(milliseconds: 200),
@@ -97,25 +99,25 @@ class AppNavRail extends ConsumerWidget {
             : NavigationRailLabelType.none,
         groupAlignment: -1.0,
         destinations: [
-          buildNavRailItem(
+          _buildNavRailItem(
             label: "Home",
             icon: Icons.home_outlined,
             selectedIcon: Icons.home_rounded,
             showTooltip: !showLabels,
           ),
-          buildNavRailItem(
+          _buildNavRailItem(
             label: "Projects",
             icon: Icons.folder_outlined,
             selectedIcon: Icons.folder_rounded,
             showTooltip: !showLabels,
           ),
-          buildNavRailItem(
+          _buildNavRailItem(
             label: "Sleep",
             icon: Icons.bedtime_outlined,
             selectedIcon: Icons.bedtime_rounded,
             showTooltip: !showLabels,
           ),
-          buildNavRailItem(
+          _buildNavRailItem(
             label: "Settings",
             icon: Icons.settings_outlined,
             selectedIcon: Icons.settings_rounded,
