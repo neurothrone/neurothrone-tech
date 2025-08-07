@@ -17,7 +17,7 @@ final ThemeData appTheme = ThemeData(
     // Violet/Indigo Accent
     primary: kPrimaryColor,
     // Lighter complementary
-    secondary: kLightPurpleColor,
+    secondary: kPrimaryColorLight,
     // 'background' is deprecated and shouldn't be used. Use surface instead.
     // background: backgroundDark,
     surface: kSurfaceDarkColor,
