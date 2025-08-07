@@ -35,7 +35,7 @@ class AppNavRail extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final activeRoute = ref.watch(currentRouteProvider);
+    final currentRoute = ref.watch(currentRouteProvider);
     final isExpanded = ref.watch(navRailExpandedProvider);
     final showLabels = ref.watch(navRailShowLabelsProvider);
 
@@ -84,7 +84,7 @@ class AppNavRail extends ConsumerWidget {
             },
           ),
         ),
-        selectedIndex: getNavRailIndex(activeRoute),
+        selectedIndex: getNavRailIndex(currentRoute),
         onDestinationSelected: (int index) {
           final route = AppRoute.fromIndex(index);
           context.goNamed(route.name);
