@@ -5,6 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../constants/constants.dart';
 import '../../navigation/navigation.dart';
+import '../theme/theme.dart';
 import 'app_version_label.dart';
 
 class AppDrawer extends StatelessWidget {
@@ -45,17 +46,17 @@ class DrawerMenuList extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final activeRoute = ref.watch(currentRouteProvider);
+    final currentRoute = ref.watch(currentRouteProvider);
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        const DrawerHeader(
-          margin: EdgeInsets.all(0),
+        DrawerHeader(
+          margin: const EdgeInsets.all(0),
           decoration: BoxDecoration(
-            color: Colors.deepPurpleAccent,
+            color: kPrimaryColor.withValues(alpha: 0.8),
           ),
-          child: Text(
+          child: const Text(
             AppConstants.appName,
             style: TextStyle(
               color: Colors.white,
@@ -68,28 +69,28 @@ class DrawerMenuList extends ConsumerWidget {
           icon: Icons.home_outlined,
           selectedIcon: Icons.home_rounded,
           route: AppRoute.home,
-          activeRoute: activeRoute,
+          selected: currentRoute == AppRoute.home,
         ),
         DrawerListTile(
           title: "Projects",
           icon: Icons.folder_outlined,
           selectedIcon: Icons.folder_rounded,
           route: AppRoute.projects,
-          activeRoute: activeRoute,
+          selected: currentRoute == AppRoute.projects,
         ),
         DrawerListTile(
           title: "Sleep",
           icon: Icons.bedtime_outlined,
           selectedIcon: Icons.bedtime_rounded,
           route: AppRoute.sleep,
-          activeRoute: activeRoute,
+          selected: currentRoute == AppRoute.sleep,
         ),
         DrawerListTile(
           title: "Settings",
           icon: Icons.settings_outlined,
           selectedIcon: Icons.settings_rounded,
           route: AppRoute.settings,
-          activeRoute: activeRoute,
+          selected: currentRoute == AppRoute.settings,
         ),
       ],
     );
@@ -103,20 +104,20 @@ class DrawerListTile extends StatelessWidget {
     required this.icon,
     required this.selectedIcon,
     required this.route,
-    required this.activeRoute,
+    this.selected = false,
   });
 
   final String title;
   final IconData icon;
   final IconData selectedIcon;
   final AppRoute route;
-  final AppRoute activeRoute;
+  final bool selected;
 
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      selected: activeRoute == route,
-      leading: Icon(activeRoute == route ? selectedIcon : icon),
+      selected: selected,
+      leading: Icon(selected ? selectedIcon : icon),
       title: Text(title),
       onTap: () {
         context.goNamed(route.name);
