@@ -33,10 +33,30 @@ class SleepPageBody extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final currentTab = ref.watch(sleepTabProvider);
 
-    return switch (currentTab) {
-      SleepTab.status => const Center(child: Text("Sleep Status")),
-      SleepTab.thisWeek => const Center(child: Text("This Week's Sleep Data")),
-      SleepTab.history => const Center(child: Text("Sleep History")),
-    };
+    return AnimatedSwitcher(
+      duration: const Duration(milliseconds: 300),
+      switchInCurve: Curves.easeOut,
+      switchOutCurve: Curves.easeIn,
+      transitionBuilder: (child, animation) {
+        return FadeTransition(
+          opacity: animation,
+          child: child,
+        );
+      },
+      child: switch (currentTab) {
+        SleepTab.status => const Center(
+          key: ValueKey(SleepTab.status),
+          child: Text("Sleep Status"),
+        ),
+        SleepTab.thisWeek => const Center(
+          key: ValueKey(SleepTab.thisWeek),
+          child: Text("This Week's Sleep Data"),
+        ),
+        SleepTab.history => const Center(
+          key: ValueKey(SleepTab.history),
+          child: Text("Sleep History"),
+        ),
+      },
+    );
   }
 }
