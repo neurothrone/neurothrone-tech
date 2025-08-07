@@ -11,8 +11,6 @@ const Color kHoverBackgroundColor = Color(
 );
 const Color kDividerBorderColor = Color(0xFF2A2A2A);
 
-const kDividerBorderSide = BorderSide(color: kDividerBorderColor, width: 1);
-
 const LinearGradient kPrimaryGradient = LinearGradient(
   colors: [
     // Color(0xFF8E2DE2), // deep violet
@@ -22,3 +20,5 @@ const LinearGradient kPrimaryGradient = LinearGradient(
   begin: Alignment.topLeft,
   end: Alignment.bottomRight,
 );
+
+const kBorderSide = BorderSide(color: kDividerBorderColor, width: 1);

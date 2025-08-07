@@ -79,7 +79,7 @@ class ProjectsPageBottomBar extends StatelessWidget {
     return Container(
       decoration: const BoxDecoration(
         border: Border(
-          top: kDividerBorderSide,
+          top: kBorderSide,
         ),
       ),
       child: BottomAppBar(

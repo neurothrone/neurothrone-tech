@@ -34,11 +34,11 @@ final ThemeData appTheme = ThemeData(
       fontSize: 20,
       fontWeight: FontWeight.w600,
     ),
-    shape: const Border(bottom: kDividerBorderSide),
+    shape: const Border(bottom: kBorderSide),
   ),
   drawerTheme: const DrawerThemeData(
     backgroundColor: kPanelDarkColor,
-    shape: Border(right: kDividerBorderSide),
+    shape: Border(right: kBorderSide),
   ),
   navigationRailTheme: NavigationRailThemeData(
     backgroundColor: kPanelDarkColor,

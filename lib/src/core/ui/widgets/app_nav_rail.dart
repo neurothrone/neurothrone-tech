@@ -16,7 +16,7 @@ class AppNavRail extends ConsumerWidget {
     return Container(
       decoration: BoxDecoration(
         border: Border(
-          right: kDividerBorderSide,
+          right: kBorderSide,
         ),
       ),
       child: NavigationRail(
