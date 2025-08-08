@@ -22,6 +22,8 @@ final class SleepPrototypeService implements SleepNetworkService {
   @override
   Future<Result<List<SleepLog>, NetworkFailure>>
   getCurrentWeekSleepLogs() async {
+    await Future.delayed(const Duration(seconds: 1));
+
     final now = DateTime.now();
     final currentWeek = _weekNumber(now);
     final currentYear = now.year;
@@ -37,6 +39,8 @@ final class SleepPrototypeService implements SleepNetworkService {
   @override
   Future<Result<List<SleepLog>, NetworkFailure>>
   getPreviousWeekSleepLogs() async {
+    await Future.delayed(const Duration(seconds: 1));
+
     final now = DateTime.now();
     final previousWeekDate = now.subtract(Duration(days: 7));
     final previousWeek = _weekNumber(previousWeekDate);
@@ -54,6 +58,8 @@ final class SleepPrototypeService implements SleepNetworkService {
   Future<Result<YearlySleepSummary, NetworkFailure>> getYearlySleepSummary({
     required int year,
   }) async {
+    await Future.delayed(const Duration(seconds: 1));
+
     final logs = _allLogs.where((log) => log.wokeUpAt.year == year);
     final Map<int, List<SleepLog>> weekMap = {};
     for (final log in logs) {
@@ -86,6 +92,8 @@ final class SleepPrototypeService implements SleepNetworkService {
     required int year,
     required int week,
   }) async {
+    await Future.delayed(const Duration(seconds: 1));
+
     final logs = _allLogs.where((log) {
       final date = log.wokeUpAt;
       return date.year == year && _weekNumber(date) == week;
@@ -106,6 +114,8 @@ final class SleepPrototypeService implements SleepNetworkService {
 
   @override
   Future<Result<bool, NetworkFailure>> isLikelyAwakeNow() async {
+    await Future.delayed(const Duration(seconds: 1));
+
     // 70% chance to be awake for fun
     return Result.success(value: DateTime.now().millisecond % 10 < 7);
   }
