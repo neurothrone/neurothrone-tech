@@ -59,10 +59,10 @@ class AppNavRail extends ConsumerWidget {
           padding: const EdgeInsets.only(top: 8.0),
           child: IconButton(
             tooltip: isExpanded ? "Collapse navigation" : "Expand navigation",
-            icon: Icon(
-              isExpanded
-                  ? Icons.keyboard_double_arrow_left_rounded
-                  : Icons.keyboard_double_arrow_right_rounded,
+            icon: AnimatedRotation(
+              turns: isExpanded ? 0.5 : 0,
+              duration: const Duration(milliseconds: 200),
+              child: Icon(Icons.keyboard_double_arrow_right_rounded),
             ),
             onPressed: () {
               final expandedNotifier = ref.read(
