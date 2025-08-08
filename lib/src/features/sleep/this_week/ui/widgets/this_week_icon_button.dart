@@ -20,6 +20,7 @@ class ThisWeekIconButton extends ConsumerWidget {
       tooltip: weekView == WeekView.thisWeek
           ? "View Last Week"
           : "View This Week",
+      style: Theme.of(context).iconButtonTheme.style,
       icon: AnimatedRotation(
         turns: weekView == WeekView.thisWeek ? 0 : 0.5,
         duration: const Duration(milliseconds: 200),
