@@ -42,6 +42,10 @@ class PaginationBar extends StatelessWidget {
                 onPressed: enabled && page != currentPage
                     ? () => onPageChanged(page)
                     : null,
+                style: TextButton.styleFrom(
+                  shape: const CircleBorder(),
+                  padding: const EdgeInsets.all(18),
+                ),
                 child: Text(
                   page.toString(),
                   style: TextStyle(
