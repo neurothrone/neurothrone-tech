@@ -15,9 +15,7 @@ class SleepPageTabBar extends ConsumerWidget {
     return NavigationBar(
       selectedIndex: currentTab.index,
       onDestinationSelected: (index) =>
-          ref.read(sleepTabProvider.notifier).state = SleepTab.fromIndex(
-            index,
-          ),
+          ref.read(sleepTabProvider.notifier).setTab(SleepTab.fromIndex(index)),
       destinations: const [
         NavigationDestination(
           label: "Awake?",
