@@ -2,6 +2,7 @@
 import 'package:get_it/get_it.dart';
 
 import '../../features/projects/shared/services/services.dart';
+import '../../features/time/services/services.dart';
 
 final serviceLocator = GetIt.instance;
 
@@ -21,5 +22,9 @@ Future<void> initDependencies() async {
 
   serviceLocator.registerLazySingleton<ProjectNetworkService>(
     () => ProjectPrototypeService(),
+  );
+
+  serviceLocator.registerLazySingleton<SleepNetworkService>(
+    () => SleepPrototypeService(),
   );
 }
