@@ -20,19 +20,11 @@ class ThisWeekIconButton extends ConsumerWidget {
       tooltip: weekView == WeekView.thisWeek
           ? "View Last Week"
           : "View This Week",
-      icon: AnimatedSwitcher(
+      icon: AnimatedRotation(
+        turns: weekView == WeekView.thisWeek ? 0 : 0.5,
         duration: const Duration(milliseconds: 200),
-        transitionBuilder: (child, animation) {
-          return RotationTransition(
-            turns: Tween<double>(begin: 0.75, end: 1).animate(animation),
-            child: FadeTransition(opacity: animation, child: child),
-          );
-        },
-        child: Icon(
-          key: ValueKey(weekView),
-          weekView == WeekView.thisWeek
-              ? Icons.arrow_back_rounded
-              : Icons.arrow_forward_rounded,
+        child: const Icon(
+          Icons.arrow_forward_rounded,
         ),
       ),
       onPressed: () {
