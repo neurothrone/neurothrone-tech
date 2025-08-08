@@ -25,6 +25,9 @@ final ThemeData appTheme = ThemeData(
     onSecondary: Colors.white70,
     onSurface: Colors.white,
   ),
+  hoverColor: kPrimaryColor.withValues(alpha: 0.16),
+  splashColor: kPrimaryColor.withValues(alpha: 0.22),
+  highlightColor: Colors.transparent,
   appBarTheme: AppBarTheme(
     backgroundColor: kPanelDarkColor,
     elevation: 0,
@@ -42,12 +45,16 @@ final ThemeData appTheme = ThemeData(
   ),
   navigationRailTheme: NavigationRailThemeData(
     backgroundColor: kPanelDarkColor,
-    selectedIconTheme: const IconThemeData(color: kPrimaryColor),
+    indicatorColor: Colors.transparent,
+    indicatorShape: CircleBorder(),
+    selectedIconTheme: const IconThemeData(
+      color: kPrimaryColor,
+    ),
     unselectedIconTheme: IconThemeData(
       color: Colors.white.withValues(alpha: 0.6),
     ),
     selectedLabelTextStyle: GoogleFonts.orbitron(
-      color: kPrimaryColor,
+      color: Colors.white.withValues(alpha: 0.8),
       fontWeight: FontWeight.w500,
       fontSize: 14,
     ),
@@ -56,32 +63,26 @@ final ThemeData appTheme = ThemeData(
       fontWeight: FontWeight.w400,
       fontSize: 14,
     ),
-    indicatorColor: kPrimaryColor.withValues(alpha: 0.2),
-  ),
-  bottomNavigationBarTheme: BottomNavigationBarThemeData(
-    backgroundColor: kPanelDarkColor,
-    selectedItemColor: kPrimaryColor,
-    unselectedItemColor: Colors.white.withValues(alpha: 0.65),
-    selectedLabelStyle: GoogleFonts.orbitron(
-      color: kPrimaryColor,
-      fontWeight: FontWeight.w500,
-      fontSize: 14,
-    ),
-    unselectedLabelStyle: GoogleFonts.orbitron(
-      color: Colors.white.withValues(alpha: 0.65),
-      fontWeight: FontWeight.w400,
-      fontSize: 14,
-    ),
-    showSelectedLabels: true,
-    showUnselectedLabels: true,
   ),
   navigationBarTheme: NavigationBarThemeData(
     backgroundColor: kPanelDarkColor,
-    indicatorColor: kPrimaryColor.withValues(alpha: 0.2),
+    indicatorColor: Colors.transparent,
+    indicatorShape: CircleBorder(),
+    overlayColor: WidgetStateProperty.all(
+      kPrimaryColor.withValues(alpha: 0.2),
+    ),
+    iconTheme: WidgetStateProperty.resolveWith((states) {
+      if (states.contains(WidgetState.selected)) {
+        return const IconThemeData(color: kPrimaryColor);
+      }
+      return IconThemeData(
+        color: Colors.white.withValues(alpha: 0.6),
+      );
+    }),
     labelTextStyle: WidgetStateProperty.resolveWith((states) {
       if (states.contains(WidgetState.selected)) {
         return GoogleFonts.orbitron(
-          color: kPrimaryColor,
+          color: Colors.white.withValues(alpha: 0.8),
           fontWeight: FontWeight.w500,
           fontSize: 14,
         );
@@ -92,14 +93,7 @@ final ThemeData appTheme = ThemeData(
         fontSize: 14,
       );
     }),
-    iconTheme: WidgetStateProperty.resolveWith((states) {
-      if (states.contains(WidgetState.selected)) {
-        return const IconThemeData(color: kPrimaryColor);
-      }
-      return IconThemeData(
-        color: Colors.white.withValues(alpha: 0.6),
-      );
-    }),
+
   ),
   bottomAppBarTheme: BottomAppBarTheme(
     color: kPanelDarkColor,
