@@ -25,6 +25,9 @@ dependencies:
   # State Management
   flutter_riverpod: ^2.6.1
 
+  # Local Storage
+  shared_preferences: ^2.5.3
+
   # Networking
   dio: ^5.8.0+1
 
