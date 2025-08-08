@@ -6,19 +6,28 @@ import '../../../../core/ui/widgets/widgets.dart';
 import '../../history/ui/sleep_history_view.dart';
 import '../../status/ui/sleep_status_view.dart';
 import '../../this_week/ui/sleep_this_week_view.dart';
+import '../../this_week/ui/widgets/this_week_icon_button.dart';
 import '../domain/domain.dart';
 import '../state/providers.dart';
 import 'widgets/sleep_page_tab_bar.dart';
 
-class SleepPage extends StatelessWidget {
+class SleepPage extends ConsumerWidget {
   const SleepPage({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return const AppScaffold(
+  Widget build(BuildContext context, WidgetRef ref) {
+    final currentTab = ref.watch(sleepTabProvider);
+
+    return AppScaffold(
       title: "Sleep",
-      body: SleepPageBody(),
-      bottomNavigationBar: Column(
+      body: const SleepPageBody(),
+      actions: switch (currentTab) {
+        SleepTab.thisWeek => [
+          ThisWeekIconButton(),
+        ],
+        _ => null,
+      },
+      bottomNavigationBar: const Column(
         mainAxisSize: MainAxisSize.min,
         children: [
           Divider(),

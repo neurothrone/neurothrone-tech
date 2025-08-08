@@ -1,12 +1,35 @@
 import 'package:flutter/material.dart';
 
-class SleepThisWeekView extends StatelessWidget {
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+import 'widgets/this_week_icon_button.dart';
+
+class SleepThisWeekView extends ConsumerWidget {
   const SleepThisWeekView({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return const Center(
-      child: Text("This Week's Sleep Data"),
+  Widget build(BuildContext context, WidgetRef ref) {
+    final weekView = ref.watch(weekViewProvider);
+
+    return AnimatedSwitcher(
+      duration: const Duration(milliseconds: 300),
+      switchInCurve: Curves.easeOut,
+      switchOutCurve: Curves.easeIn,
+      transitionBuilder: (child, animation) {
+        return FadeTransition(
+          opacity: animation,
+          child: child,
+        );
+      },
+      child: weekView == WeekView.thisWeek
+          ? const Text(
+              key: ValueKey(WeekView.thisWeek),
+              "This Week's Sleep Data",
+            )
+          : const Text(
+              key: ValueKey(WeekView.lastWeek),
+              "Last Week's Sleep Data",
+            ),
     );
   }
 }
