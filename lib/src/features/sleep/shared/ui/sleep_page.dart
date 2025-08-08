@@ -3,9 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../core/ui/widgets/widgets.dart';
+import '../../history/ui/sleep_history_view.dart';
+import '../../status/ui/sleep_status_view.dart';
+import '../../this_week/ui/sleep_this_week_view.dart';
 import '../domain/domain.dart';
 import '../state/providers.dart';
-import 'views/views.dart';
 import 'widgets/sleep_page_tab_bar.dart';
 
 class SleepPage extends StatelessWidget {
