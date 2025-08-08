@@ -5,6 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../core/ui/widgets/widgets.dart';
 import '../domain/domain.dart';
 import '../state/providers.dart';
+import 'views/views.dart';
 import 'widgets/sleep_page_tab_bar.dart';
 
 class SleepPage extends StatelessWidget {
@@ -44,17 +45,14 @@ class SleepPageBody extends ConsumerWidget {
         );
       },
       child: switch (currentTab) {
-        SleepTab.status => const Center(
+        SleepTab.status => const SleepStatusView(
           key: ValueKey(SleepTab.status),
-          child: Text("Sleep Status"),
         ),
-        SleepTab.thisWeek => const Center(
+        SleepTab.thisWeek => const SleepThisWeekView(
           key: ValueKey(SleepTab.thisWeek),
-          child: Text("This Week's Sleep Data"),
         ),
-        SleepTab.history => const Center(
+        SleepTab.history => const SleepHistoryView(
           key: ValueKey(SleepTab.history),
-          child: Text("Sleep History"),
         ),
       },
     );
