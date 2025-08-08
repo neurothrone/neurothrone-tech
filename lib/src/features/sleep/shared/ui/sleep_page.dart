@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../core/ui/widgets/widgets.dart';
+import '../../../../core/ui/widgets/widgets.dart';
 import '../domain/domain.dart';
 import '../state/providers.dart';
 import 'views/views.dart';

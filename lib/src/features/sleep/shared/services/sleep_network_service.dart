@@ -1,4 +1,4 @@
-import '../../../core/utils/utils.dart';
+import '../../../../core/utils/utils.dart';
 import '../data/models/models.dart';
 
 abstract interface class SleepNetworkService {

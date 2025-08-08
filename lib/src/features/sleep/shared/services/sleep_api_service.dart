@@ -1,5 +1,4 @@
-import '../../../core/utils/network_failure.dart';
-import '../../../core/utils/result.dart';
+import '../../../../core/utils/utils.dart';
 import '../data/models/sleep_log.dart';
 import '../data/models/sleep_week_summary.dart';
 import '../data/models/yearly_sleep_summary.dart';
