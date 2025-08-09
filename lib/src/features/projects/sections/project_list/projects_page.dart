@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../../core/ui/theme/constants.dart';
+import '../../../../core/ui/theme/theme.dart';
 import '../../../../core/ui/widgets/widgets.dart';
-import '../domain/project_view_mode.dart';
-import '../state/project_list_state.dart';
-import '../state/providers.dart';
+import 'domain/project_view_mode.dart';
+import 'state/project_list_state.dart';
+import 'state/providers.dart';
 import 'widgets/project_grid_view.dart';
 import 'widgets/project_view_mode_switcher.dart';
 import 'widgets/project_list_view.dart';

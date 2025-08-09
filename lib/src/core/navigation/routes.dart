@@ -4,7 +4,7 @@ import 'package:go_router/go_router.dart';
 
 import '../../features/home/ui/home_page.dart';
 import '../../features/projects/project_detail/ui/project_detail_page.dart';
-import '../../features/projects/project_list/ui/projects_page.dart';
+import '../../features/projects/sections/project_list/projects_page.dart';
 import '../../features/settings/ui/settings_page.dart';
 import '../../features/sleep/view/sleep_page.dart';
 import 'app_route.dart';

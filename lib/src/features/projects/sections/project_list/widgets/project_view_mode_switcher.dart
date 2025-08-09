@@ -2,8 +2,8 @@ import "package:flutter/material.dart";
 
 import "package:flutter_riverpod/flutter_riverpod.dart";
 
-import "../../domain/project_view_mode.dart";
-import "../../state/providers.dart";
+import "../domain/project_view_mode.dart";
+import "../state/providers.dart";
 
 class ProjectViewModeSwitcher extends ConsumerWidget {
   const ProjectViewModeSwitcher({super.key});

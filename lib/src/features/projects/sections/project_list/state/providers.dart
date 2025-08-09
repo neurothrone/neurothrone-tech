@@ -1,7 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../shared/services/services.dart';
-import '../../shared/state/providers.dart';
+import '../../../shared/services/services.dart';
+import '../../../shared/state/providers.dart';
 import '../domain/project_view_mode.dart';
 import 'project_list_controller.dart';
 import 'project_list_state.dart';

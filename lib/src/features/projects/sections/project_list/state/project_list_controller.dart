@@ -1,8 +1,8 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../../core/utils/utils.dart';
-import '../../shared/data/responses/responses.dart';
-import '../../shared/services/services.dart';
+import '../../../../../core/utils/utils.dart';
+import '../../../shared/data/responses/responses.dart';
+import '../../../shared/services/services.dart';
 import 'project_list_state.dart';
 
 final class ProjectListController

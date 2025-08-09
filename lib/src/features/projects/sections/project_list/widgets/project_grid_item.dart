@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:go_router/go_router.dart';
 
-import '../../../../../core/constants/app_dimensions.dart';
+import '../../../../../core/constants/constants.dart';
 import '../../../../../core/navigation/navigation.dart';
 import '../../../shared/data/models/models.dart';
 

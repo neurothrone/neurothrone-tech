@@ -1,4 +1,4 @@
-import '../../shared/data/models/models.dart';
+import '../../../shared/data/models/models.dart';
 
 final class ProjectListState {
   const ProjectListState({
