@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../../../core/utils/utils.dart';
 import '../../../shared/data/models/models.dart';
-import '../../this_week/widgets/duration_chip.dart' show DurationChip;
+import '../../../shared/widgets/duration_chip.dart';
 import 'week_badge.dart';
 
 class SleepHistoryList extends StatelessWidget {

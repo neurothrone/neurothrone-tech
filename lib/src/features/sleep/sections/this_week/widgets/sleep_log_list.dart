@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../../../core/utils/utils.dart';
 import '../../../shared/data/models/models.dart';
-import 'duration_chip.dart';
+import '../../../shared/widgets/duration_chip.dart';
 
 class SleepLogList extends StatelessWidget {
   const SleepLogList({
