@@ -2,12 +2,8 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-enum WeekView {
-  thisWeek,
-  lastWeek,
-}
-
-final weekViewProvider = StateProvider<WeekView>((ref) => WeekView.thisWeek);
+import '../../domain/domain.dart';
+import '../../state/providers.dart';
 
 class ThisWeekIconButton extends ConsumerWidget {
   const ThisWeekIconButton({super.key});
