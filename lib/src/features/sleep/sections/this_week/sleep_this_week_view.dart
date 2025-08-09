@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../domain/domain.dart';
-import '../state/providers.dart';
+import 'domain/domain.dart';
+import 'state/providers.dart';
 
 class SleepThisWeekView extends ConsumerWidget {
   const SleepThisWeekView({super.key});

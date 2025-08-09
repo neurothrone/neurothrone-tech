@@ -5,8 +5,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../core/widgets/widgets.dart';
 import 'sections/history/ui/sleep_history_view.dart';
 import 'sections/status/ui/sleep_status_view.dart';
-import 'sections/this_week/ui/sleep_this_week_view.dart';
-import 'sections/this_week/ui/widgets/this_week_icon_button.dart';
+import 'sections/this_week/sleep_this_week_view.dart';
+import 'sections/this_week/widgets/this_week_icon_button.dart';
 import 'shared/domain/domain.dart';
 import 'shared/state/providers.dart';
 
