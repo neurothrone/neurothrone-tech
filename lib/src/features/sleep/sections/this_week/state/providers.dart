@@ -10,10 +10,11 @@ final weekViewStateProvider = StateProvider<WeekView>(
   (ref) => WeekView.thisWeek,
 );
 
-final sleepListNotifierProvider =
-    StateNotifierProvider<SleepListNotifier, AsyncValue<SleepListState>>((
+final sleepListNotifierProvider = StateNotifierProvider.autoDispose
+    .family<SleepListNotifier, AsyncValue<SleepListState>, WeekView>((
       ref,
+      WeekView week,
     ) {
       final SleepNetworkService service = ref.read(sleepServiceProvider);
-      return SleepListNotifier(service: service);
+      return SleepListNotifier(service: service)..loadForWeek(week);
     });
