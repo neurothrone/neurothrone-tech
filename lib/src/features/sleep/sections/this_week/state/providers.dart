@@ -2,5 +2,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../domain/domain.dart';
 
-final weekViewProvider = StateProvider<WeekView>((ref) => WeekView.thisWeek);
-
+final weekViewStateProvider = StateProvider<WeekView>(
+  (ref) => WeekView.thisWeek,
+);

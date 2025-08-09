@@ -10,7 +10,7 @@ class SleepThisWeekView extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final weekView = ref.watch(weekViewProvider);
+    final weekView = ref.watch(weekViewStateProvider);
 
     return AnimatedSwitcher(
       duration: const Duration(milliseconds: 300),

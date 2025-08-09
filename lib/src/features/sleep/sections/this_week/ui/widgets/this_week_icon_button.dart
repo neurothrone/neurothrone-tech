@@ -10,7 +10,7 @@ class ThisWeekIconButton extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final weekView = ref.watch(weekViewProvider);
+    final weekView = ref.watch(weekViewStateProvider);
 
     return IconButton(
       tooltip: weekView == WeekView.thisWeek
@@ -26,7 +26,7 @@ class ThisWeekIconButton extends ConsumerWidget {
       ),
       onPressed: () {
         ref
-            .read(weekViewProvider.notifier)
+            .read(weekViewStateProvider.notifier)
             .state = weekView == WeekView.thisWeek
             ? WeekView.lastWeek
             : WeekView.thisWeek;
