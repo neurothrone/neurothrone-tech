@@ -15,7 +15,7 @@ class SleepPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final currentTab = ref.watch(sleepTabProvider);
+    final currentTab = ref.watch(sleepTabNotifierProvider);
 
     return AppScaffold(
       title: "Sleep",
@@ -42,7 +42,7 @@ class SleepPageBody extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final currentTab = ref.watch(sleepTabProvider);
+    final currentTab = ref.watch(sleepTabNotifierProvider);
 
     return AnimatedSwitcher(
       duration: const Duration(milliseconds: 300),
@@ -74,12 +74,12 @@ class SleepPageTabBar extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final currentTab = ref.watch(sleepTabProvider);
+    final currentTab = ref.watch(sleepTabNotifierProvider);
 
     return NavigationBar(
       selectedIndex: currentTab.index,
       onDestinationSelected: (index) =>
-          ref.read(sleepTabProvider.notifier).setTab(SleepTab.fromIndex(index)),
+          ref.read(sleepTabNotifierProvider.notifier).setTab(SleepTab.fromIndex(index)),
       destinations: const [
         NavigationDestination(
           label: "Awake?",

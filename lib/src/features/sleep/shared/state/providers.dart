@@ -7,7 +7,7 @@ import '../domain/domain.dart';
 import '../services/services.dart';
 import 'sleep_tab_notifier.dart';
 
-final sleepTabProvider = StateNotifierProvider<SleepTabNotifier, SleepTab>((
+final sleepTabNotifierProvider = StateNotifierProvider<SleepTabNotifier, SleepTab>((
   ref,
 ) {
   return SleepTabNotifier(
