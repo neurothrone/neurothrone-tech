@@ -6,15 +6,15 @@ import '../domain/project_view_mode.dart';
 import 'project_list_controller.dart';
 import 'project_list_state.dart';
 
-final searchTextProvider = StateProvider<String>((ref) {
+final searchTextStateProvider = StateProvider<String>((ref) {
   return "";
 });
 
-final projectViewModeProvider = StateProvider<ProjectViewMode>(
+final projectViewModeStateProvider = StateProvider<ProjectViewMode>(
   (ref) => ProjectViewMode.list,
 );
 
-final projectListProvider =
+final projectListNotifierProvider =
     StateNotifierProvider<ProjectListController, AsyncValue<ProjectListState>>((
       ref,
     ) {

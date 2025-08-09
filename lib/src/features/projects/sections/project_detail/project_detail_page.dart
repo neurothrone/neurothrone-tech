@@ -34,7 +34,7 @@ class ProjectDetailBody extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final projectState = ref.watch(projectDetailProvider(projectSlug));
+    final projectState = ref.watch(projectDetailFutureProvider(projectSlug));
 
     return projectState.when(
       data: (ProjectDetails? project) => project == null

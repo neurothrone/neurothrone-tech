@@ -10,8 +10,8 @@ class ProjectViewModeSwitcher extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final mode = ref.watch(projectViewModeProvider);
-    final notifier = ref.read(projectViewModeProvider.notifier);
+    final mode = ref.watch(projectViewModeStateProvider);
+    final notifier = ref.read(projectViewModeStateProvider.notifier);
 
     return IconButton(
       tooltip: mode == ProjectViewMode.list

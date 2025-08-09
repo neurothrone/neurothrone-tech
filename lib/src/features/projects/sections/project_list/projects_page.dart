@@ -33,7 +33,7 @@ class ProjectsRefreshButton extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final reportsAsyncState = ref.watch(projectListProvider);
+    final reportsAsyncState = ref.watch(projectListNotifierProvider);
     final isLoading = reportsAsyncState.isLoading;
 
     return IconButton(
@@ -42,7 +42,7 @@ class ProjectsRefreshButton extends ConsumerWidget {
       style: Theme.of(context).iconButtonTheme.style,
       onPressed: isLoading
           ? null
-          : () => ref.read(projectListProvider.notifier).searchReports(),
+          : () => ref.read(projectListNotifierProvider.notifier).searchReports(),
     );
   }
 }
@@ -52,8 +52,8 @@ class ProjectsPageBody extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final reportsAsyncState = ref.watch(projectListProvider);
-    final viewMode = ref.watch(projectViewModeProvider);
+    final reportsAsyncState = ref.watch(projectListNotifierProvider);
+    final viewMode = ref.watch(projectViewModeStateProvider);
 
     return reportsAsyncState.when(
       data: (ProjectListState state) {
@@ -85,7 +85,7 @@ class ProjectsPageBottomBar extends StatelessWidget {
       child: BottomAppBar(
         child: Consumer(
           builder: (context, ref, _) {
-            final reportsAsyncState = ref.watch(projectListProvider);
+            final reportsAsyncState = ref.watch(projectListNotifierProvider);
             final isLoading = reportsAsyncState.isLoading;
 
             return reportsAsyncState.maybeWhen(
@@ -93,7 +93,7 @@ class ProjectsPageBottomBar extends StatelessWidget {
                 currentPage: result.currentPage,
                 totalPages: (result.totalCount / result.pageSize).ceil(),
                 onPageChanged: (int newPage) => ref
-                    .read(projectListProvider.notifier)
+                    .read(projectListNotifierProvider.notifier)
                     .searchReports(page: newPage),
                 enabled: !isLoading,
               ),

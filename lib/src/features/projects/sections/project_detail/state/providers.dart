@@ -5,7 +5,7 @@ import '../../../shared/services/services.dart';
 import '../../../shared/state/providers.dart';
 import '../utils/utils.dart';
 
-final projectDetailProvider = FutureProvider.autoDispose
+final projectDetailFutureProvider = FutureProvider.autoDispose
     .family<ProjectDetails?, String>((ref, projectSlug) async {
       final ProjectNetworkService service = ref.read(projectServiceProvider);
       final result = await service.getBy(slug: projectSlug);

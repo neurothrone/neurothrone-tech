@@ -5,6 +5,10 @@ import '../domain/domain.dart';
 import '../services/services.dart';
 import 'sleep_tab_notifier.dart';
 
+final sleepServiceProvider = Provider<SleepNetworkService>((ref) {
+  return serviceLocator<SleepNetworkService>();
+});
+
 final sleepTabNotifierProvider =
     StateNotifierProvider<SleepTabNotifier, SleepTab>((
       ref,
@@ -13,7 +17,3 @@ final sleepTabNotifierProvider =
         service: serviceLocator<SleepPreferencesService>(),
       );
     });
-
-final sleepServiceProvider = Provider<SleepNetworkService>((ref) {
-  return serviceLocator<SleepNetworkService>();
-});

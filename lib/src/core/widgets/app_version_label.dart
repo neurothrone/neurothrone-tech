@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../providers/app_version_provider.dart';
+import '../state/providers.dart';
 
 class AppVersionLabel extends ConsumerWidget {
   const AppVersionLabel({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final versionAsync = ref.watch(appVersionProvider);
+    final versionAsync = ref.watch(appVersionFutureProvider);
 
     return FittedBox(
       fit: BoxFit.scaleDown,
