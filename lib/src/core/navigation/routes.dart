@@ -6,7 +6,7 @@ import '../../features/home/home_page.dart';
 import '../../features/projects/sections/project_detail/project_detail_page.dart';
 import '../../features/projects/sections/project_list/projects_page.dart';
 import '../../features/settings/settings_page.dart';
-import '../../features/sleep/view/sleep_page.dart';
+import '../../features/sleep/sleep_page.dart';
 import 'app_route.dart';
 import 'transitions.dart';
 
