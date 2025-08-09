@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../core/widgets/widgets.dart';
 import 'sections/history/sleep_history_view.dart';
+import 'sections/history/state/providers.dart';
 import 'sections/history/widgets/year_menu_anchor.dart';
 import 'sections/status/sleep_status_view.dart';
 import 'sections/this_week/domain/domain.dart';
@@ -82,6 +83,7 @@ class SleepPageTabBar extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final currentTab = ref.watch(sleepTabNotifierProvider);
     final weekView = ref.watch(weekViewStateProvider);
+    final selectedYear = ref.watch(selectedYearStateProvider);
 
     return NavigationBar(
       selectedIndex: currentTab.index,
@@ -101,8 +103,10 @@ class SleepPageTabBar extends ConsumerWidget {
           selectedIcon: const Icon(Icons.view_week_rounded),
           tooltip: "This or last week's sleep data, depending on your mood.",
         ),
-        const NavigationDestination(
-          label: "Year",
+        NavigationDestination(
+          label: selectedYear == DateTime.now().year
+              ? "This Year"
+              : "Year $selectedYear",
           icon: Icon(Icons.auto_graph_outlined),
           selectedIcon: Icon(Icons.auto_graph_rounded),
           tooltip: "A year's worth of questionable sleep habits.",
