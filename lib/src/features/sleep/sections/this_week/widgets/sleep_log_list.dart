@@ -34,25 +34,37 @@ class SleepLogListTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      contentPadding: const EdgeInsets.symmetric(
-        horizontal: 16,
-        vertical: 8,
+      contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+      title: LayoutBuilder(
+        builder: (context, constraints) {
+          final width = constraints.maxWidth;
+          final showBadge = width >= 300;
+          final showChip = width >= 350;
+
+          return Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              if (showBadge) ...[
+                DayMonthBadge(date: log.wokeUpAt),
+                const SizedBox(width: 16),
+              ],
+              Expanded(
+                child: Text(
+                  log.wokeUpAt.weekdayWithTimeLabel(),
+                  style: Theme.of(context).textTheme.bodyLarge,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  softWrap: false,
+                ),
+              ),
+              if (showChip) ...[
+                const SizedBox(width: 8),
+                DurationChip(duration: log.duration),
+              ],
+            ],
+          );
+        },
       ),
-      leading: DayMonthBadge(date: log.wokeUpAt),
-      title: Row(
-        children: [
-          Expanded(
-            child: Text(
-              log.wokeUpAt.weekdayWithTimeLabel(),
-              style: Theme.of(context).textTheme.bodyLarge,
-              maxLines: 1,
-              overflow: TextOverflow.ellipsis,
-              softWrap: false,
-            ),
-          ),
-        ],
-      ),
-      trailing: DurationChip(duration: log.duration),
     );
   }
 }
