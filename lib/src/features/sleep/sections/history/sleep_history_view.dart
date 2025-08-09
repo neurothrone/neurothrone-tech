@@ -11,9 +11,8 @@ class SleepHistoryView extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final year = ref.watch(selectedYearStateProvider);
     final sleepSummaryAsyncState = ref.watch(
-      sleepHistoryNotifierProvider(year),
+      sleepHistoryNotifierProvider,
     );
 
     return AnimatedSwitcher(

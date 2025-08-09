@@ -10,14 +10,10 @@ final selectedYearStateProvider = StateProvider<int>(
   (ref) => DateTime.now().year,
 );
 
-final sleepHistoryNotifierProvider = StateNotifierProvider.autoDispose
-    .family<SleepHistoryNotifier, AsyncValue<SleepHistoryState>, int>((
-      ref,
-      int year,
-    ) {
-      final service = ref.watch(sleepServiceProvider);
-      return SleepHistoryNotifier(service: service)..loadForYear(year);
-    });
+final sleepHistoryNotifierProvider =
+    AsyncNotifierProvider.autoDispose<SleepHistoryNotifier, SleepHistoryState>(
+      SleepHistoryNotifier.new,
+    );
 
 final historyYearsFutureProvider = FutureProvider<List<int>>((ref) async {
   final service = ref.read(sleepServiceProvider);
