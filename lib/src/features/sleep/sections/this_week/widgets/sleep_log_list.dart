@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../../../../../core/utils/utils.dart';
 import '../../../shared/data/models/models.dart';
 import '../../../shared/widgets/duration_chip.dart';
+import 'day_month_badge.dart';
 
 class SleepLogList extends StatelessWidget {
   const SleepLogList({
@@ -32,33 +33,17 @@ class SleepLogListTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final date = log.wokeUpAt;
     return ListTile(
       contentPadding: const EdgeInsets.symmetric(
         horizontal: 16,
         vertical: 8,
       ),
-      leading: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Text(
-            date.dayNumber(),
-            style: Theme.of(context).textTheme.titleLarge,
-          ),
-          Text(
-            date.monthAbbr().toUpperCase(),
-            style: Theme.of(context).textTheme.labelSmall?.copyWith(
-              letterSpacing: 1.5,
-              fontWeight: FontWeight.w600,
-            ),
-          ),
-        ],
-      ),
+      leading: DayMonthBadge(date: log.wokeUpAt),
       title: Row(
         children: [
           Expanded(
             child: Text(
-              date.weekdayWithTimeLabel(),
+              log.wokeUpAt.weekdayWithTimeLabel(),
               style: Theme.of(context).textTheme.bodyLarge,
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
