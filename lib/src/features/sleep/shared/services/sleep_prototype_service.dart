@@ -123,20 +123,6 @@ final class SleepPrototypeService implements SleepNetworkService {
   }
 
   @override
-  Future<Result<bool, NetworkFailure>> isLikelyAwakeNow() async {
-    await Future.delayed(const Duration(seconds: 1));
-
-    // 70% chance to be awake for fun
-    return Result.success(value: DateTime.now().millisecond % 10 < 7);
-  }
-
-  int _weekNumber(DateTime date) {
-    final firstDayOfYear = DateTime(date.year, 1, 1);
-    final daysSinceYearStart = date.difference(firstDayOfYear).inDays;
-    return ((daysSinceYearStart + firstDayOfYear.weekday) / 7).ceil();
-  }
-
-  @override
   Future<Result<List<int>, NetworkFailure>> getHistoryYears() async {
     await Future.delayed(const Duration(seconds: 1));
     final years = _allLogs
@@ -145,5 +131,18 @@ final class SleepPrototypeService implements SleepNetworkService {
         .toList()
       ..sort((a, b) => b.compareTo(a));
     return Result.success(value: years);
+  }
+
+  @override
+  Future<Result<bool, NetworkFailure>> isLikelyAwakeNow() async {
+    await Future.delayed(const Duration(seconds: 1));
+    // 70% chance to be awake for fun
+    return Result.success(value: DateTime.now().millisecond % 10 < 7);
+  }
+
+  int _weekNumber(DateTime date) {
+    final firstDayOfYear = DateTime(date.year, 1, 1);
+    final daysSinceYearStart = date.difference(firstDayOfYear).inDays;
+    return ((daysSinceYearStart + firstDayOfYear.weekday) / 7).ceil();
   }
 }
