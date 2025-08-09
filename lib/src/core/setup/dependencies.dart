@@ -1,5 +1,6 @@
 // import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get_it/get_it.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../features/projects/shared/services/services.dart';
 import '../../features/sleep/shared/services/services.dart';
@@ -20,10 +21,22 @@ Future<void> initDependencies() async {
   //   },
   // );
 
+  // !: Core
+  serviceLocator.registerLazySingleton<SharedPreferencesAsync>(
+    () => SharedPreferencesAsync(),
+  );
+
+  // !: Projects
   serviceLocator.registerLazySingleton<ProjectNetworkService>(
     () => ProjectPrototypeService(),
   );
 
+  // !: Sleep
+  serviceLocator.registerLazySingleton<SleepPreferencesService>(
+    () => SleepPreferencesService(
+      sharedPreferences: serviceLocator(),
+    ),
+  );
   serviceLocator.registerLazySingleton<SleepNetworkService>(
     () => SleepPrototypeService(),
   );
