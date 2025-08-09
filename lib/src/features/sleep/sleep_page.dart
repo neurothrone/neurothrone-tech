@@ -5,7 +5,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../core/widgets/widgets.dart';
 import 'sections/history/sleep_history_view.dart';
 import 'sections/status/sleep_status_view.dart';
+import 'sections/this_week/domain/domain.dart';
 import 'sections/this_week/sleep_this_week_view.dart';
+import 'sections/this_week/state/providers.dart';
 import 'sections/this_week/widgets/this_week_icon_button.dart';
 import 'shared/domain/domain.dart';
 import 'shared/state/providers.dart';
@@ -75,25 +77,26 @@ class SleepPageTabBar extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final currentTab = ref.watch(sleepTabNotifierProvider);
+    final weekView = ref.watch(weekViewStateProvider);
 
     return NavigationBar(
       selectedIndex: currentTab.index,
       onDestinationSelected: (index) =>
           ref.read(sleepTabNotifierProvider.notifier).setTab(SleepTab.fromIndex(index)),
-      destinations: const [
-        NavigationDestination(
+      destinations: [
+        const NavigationDestination(
           label: "Awake?",
           icon: Icon(Icons.access_time_outlined),
           selectedIcon: Icon(Icons.access_time_filled_rounded),
           tooltip: "Is he conscious... or in another dimension?",
         ),
         NavigationDestination(
-          label: "Week",
-          icon: Icon(Icons.view_week_outlined),
-          selectedIcon: Icon(Icons.view_week_rounded),
+          label: weekView == WeekView.thisWeek ? "This Week" : "Last Week",
+          icon: const Icon(Icons.view_week_outlined),
+          selectedIcon: const Icon(Icons.view_week_rounded),
           tooltip: "This or last week's sleep data, depending on your mood.",
         ),
-        NavigationDestination(
+        const NavigationDestination(
           label: "Year",
           icon: Icon(Icons.auto_graph_outlined),
           selectedIcon: Icon(Icons.auto_graph_rounded),
