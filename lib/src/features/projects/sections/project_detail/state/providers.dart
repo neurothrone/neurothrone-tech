@@ -1,8 +1,8 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../shared/data/models/project_details.dart';
-import '../../shared/services/services.dart';
-import '../../shared/state/providers.dart';
+import '../../../shared/data/models/models.dart';
+import '../../../shared/services/services.dart';
+import '../../../shared/state/providers.dart';
 import '../utils/utils.dart';
 
 final projectDetailProvider = FutureProvider.autoDispose
