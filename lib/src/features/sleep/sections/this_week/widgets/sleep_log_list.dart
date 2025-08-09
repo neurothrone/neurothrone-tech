@@ -34,7 +34,10 @@ class SleepLogListTile extends StatelessWidget {
   Widget build(BuildContext context) {
     final date = log.wokeUpAt;
     return ListTile(
-      contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+      contentPadding: const EdgeInsets.symmetric(
+        horizontal: 16,
+        vertical: 8,
+      ),
       leading: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
@@ -45,7 +48,7 @@ class SleepLogListTile extends StatelessWidget {
           Text(
             date.monthAbbr().toUpperCase(),
             style: Theme.of(context).textTheme.labelSmall?.copyWith(
-              letterSpacing: 1.0,
+              letterSpacing: 1.5,
               fontWeight: FontWeight.w600,
             ),
           ),
