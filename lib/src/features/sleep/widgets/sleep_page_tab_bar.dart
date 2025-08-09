@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../domain/domain.dart';
-import '../../state/providers.dart';
+import '../shared/domain/domain.dart';
+import '../shared/state/providers.dart';
 
 class SleepPageTabBar extends ConsumerWidget {
   const SleepPageTabBar({super.key});
