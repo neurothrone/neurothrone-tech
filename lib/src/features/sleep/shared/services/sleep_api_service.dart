@@ -35,6 +35,12 @@ final class SleepApiService implements SleepNetworkService {
   }
 
   @override
+  Future<Result<List<int>, NetworkFailure>> getHistoryYears() {
+    // TODO: implement getHistoryYears
+    throw UnimplementedError();
+  }
+
+  @override
   Future<Result<bool, NetworkFailure>> isLikelyAwakeNow() {
     // TODO: implement isLikelyAwakeNow
     throw UnimplementedError();

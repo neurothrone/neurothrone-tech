@@ -15,5 +15,7 @@ abstract interface class SleepNetworkService {
     required int week,
   });
 
+  Future<Result<List<int>, NetworkFailure>> getHistoryYears();
+
   Future<Result<bool, NetworkFailure>> isLikelyAwakeNow();
 }

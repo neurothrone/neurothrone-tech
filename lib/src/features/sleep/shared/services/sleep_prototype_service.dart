@@ -16,6 +16,16 @@ final class SleepPrototypeService implements SleepNetworkService {
       logs.add(SleepLog(wokeUpAt: wakeUp, fellAsleepAt: sleep));
     }
 
+    // Generate logs for last year and two years ago - one per day for 2 months (60 days each)
+    for (final year in [now.year - 1, now.year - 2]) {
+      final start = DateTime(year, 1, 1, 8);
+      for (int i = 0; i < 60; i++) {
+        final wakeUp = start.add(Duration(days: i));
+        final sleep = wakeUp.subtract(Duration(hours: 7, minutes: i % 60));
+        logs.add(SleepLog(wokeUpAt: wakeUp, fellAsleepAt: sleep));
+      }
+    }
+
     return logs;
   }
 
@@ -124,5 +134,16 @@ final class SleepPrototypeService implements SleepNetworkService {
     final firstDayOfYear = DateTime(date.year, 1, 1);
     final daysSinceYearStart = date.difference(firstDayOfYear).inDays;
     return ((daysSinceYearStart + firstDayOfYear.weekday) / 7).ceil();
+  }
+
+  @override
+  Future<Result<List<int>, NetworkFailure>> getHistoryYears() async {
+    await Future.delayed(const Duration(seconds: 1));
+    final years = _allLogs
+        .map((e) => e.wokeUpAt.year)
+        .toSet()
+        .toList()
+      ..sort((a, b) => b.compareTo(a));
+    return Result.success(value: years);
   }
 }
