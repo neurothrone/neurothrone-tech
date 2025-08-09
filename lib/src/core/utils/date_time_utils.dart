@@ -20,3 +20,31 @@ extension DateTimeFormattingX on DateTime {
 
   String monthAbbr() => DateFormat.MMM().format(this);
 }
+
+String formatIsoWeekRange({required int year, required int week}) {
+  DateTime start = isoWeekStart(year, week);
+  final end = start.add(const Duration(days: 6));
+
+  final sameMonth = start.month == end.month;
+  if (sameMonth) {
+    // e.g., Aug 4–10
+    final month = DateFormat.MMM().format(start);
+    return "$month ${start.day}–${end.day}";
+  } else {
+    // e.g., Jul 29–Aug 4
+    final startMonth = DateFormat.MMM().format(start);
+    final endMonth = DateFormat.MMM().format(end);
+    return "$startMonth ${start.day}–$endMonth ${end.day}";
+  }
+}
+
+DateTime isoWeekStart(int year, int week) {
+  // ISO week 1 is the week with Jan 4; weeks start on Monday.
+  final jan4 = DateTime(year, 1, 4);
+  final weekday = jan4.weekday; // Monday=1...Sunday=7
+  final mondayOfWeek1 = jan4.subtract(
+    Duration(days: weekday - DateTime.monday),
+  );
+  final start = mondayOfWeek1.add(Duration(days: (week - 1) * 7));
+  return DateTime(start.year, start.month, start.day);
+}
