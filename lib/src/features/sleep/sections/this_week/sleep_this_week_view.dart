@@ -11,9 +11,8 @@ class SleepThisWeekView extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final weekView = ref.watch(weekViewStateProvider);
     final sleepLogsAsyncState = ref.watch(
-      sleepListNotifierProvider(weekView),
+      sleepListNotifierProvider,
     );
 
     return AnimatedSwitcher(

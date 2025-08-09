@@ -1,38 +1,34 @@
+import 'dart:async';
+
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../../core/utils/utils.dart';
 import '../../../shared/data/models/models.dart';
 import '../../../shared/services/services.dart';
+import '../../../shared/state/providers.dart';
 import '../domain/domain.dart';
+import 'providers.dart';
 import 'sleep_list_state.dart';
 
-final class SleepListNotifier
-    extends StateNotifier<AsyncValue<SleepListState>> {
-  SleepListNotifier({
-    required SleepNetworkService service,
-  }) : _service = service,
-       super(AsyncValue.data(SleepListState.initial()));
+final class SleepListNotifier extends AutoDisposeAsyncNotifier<SleepListState> {
+  SleepNetworkService get _service => ref.read(sleepServiceProvider);
 
-  final SleepNetworkService _service;
+  @override
+  Future<SleepListState> build() async {
+    final currentWeek = ref.watch(weekViewStateProvider);
+    return _loadForWeek(currentWeek);
+  }
 
-  Future<void> loadForWeek(WeekView week) async {
-    state = const AsyncLoading();
-
-    try {
-      final result = switch (week) {
-        WeekView.thisWeek => await _service.getCurrentWeekSleepLogs(),
-        WeekView.lastWeek => await _service.getPreviousWeekSleepLogs(),
-      };
-      result.when(
-        success: (List<SleepLog> logs) {
-          state = AsyncData(SleepListState(logs: logs));
-        },
-        failure: (NetworkFailure failure) {
-          state = AsyncError(failure.message, StackTrace.current);
-        },
-      );
-    } catch (e, st) {
-      state = AsyncError(e, st);
-    }
+  Future<SleepListState> _loadForWeek(WeekView week) async {
+    final result = switch (week) {
+      WeekView.thisWeek => await _service.getCurrentWeekSleepLogs(),
+      WeekView.lastWeek => await _service.getPreviousWeekSleepLogs(),
+    };
+    return result.when(
+      success: (List<SleepLog> logs) => SleepListState(logs: logs),
+      failure: (NetworkFailure failure) {
+        throw Exception(failure.message);
+      },
+    );
   }
 }
