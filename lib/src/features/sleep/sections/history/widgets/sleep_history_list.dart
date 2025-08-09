@@ -36,14 +36,10 @@ class SleepHistoryListTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      contentPadding: const EdgeInsets.symmetric(
-        horizontal: 16,
-        vertical: 8,
-      ),
+      contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       title: LayoutBuilder(
         builder: (context, constraints) {
           final width = constraints.maxWidth;
-          // Responsive thresholds for showing optional pieces
           final showBadge = width >= 300;
           final showChip = width >= 380;
 
@@ -52,7 +48,7 @@ class SleepHistoryListTile extends StatelessWidget {
             children: [
               if (showBadge) ...[
                 WeekBadge(week: summary.week),
-                const SizedBox(width: 8),
+                const SizedBox(width: 16),
               ],
               Expanded(
                 child: Text(
