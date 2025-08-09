@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../navigation/navigation.dart';
+import '../navigation/navigation.dart';
 import '../theme/theme.dart';
 
 const kExpandedNavRailWidth = 100.0;

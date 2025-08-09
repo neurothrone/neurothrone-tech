@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../../core/ui/theme/theme.dart';
-import '../../../../core/ui/widgets/widgets.dart';
+import '../../../../core/theme/theme.dart';
+import '../../../../core/widgets/widgets.dart';
 import 'domain/project_view_mode.dart';
 import 'state/project_list_state.dart';
 import 'state/providers.dart';

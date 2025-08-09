@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../providers/app_version_provider.dart';
+import '../providers/app_version_provider.dart';
 
 class AppVersionLabel extends ConsumerWidget {
   const AppVersionLabel({super.key});

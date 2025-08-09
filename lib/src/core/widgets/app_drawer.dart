@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../constants/constants.dart';
-import '../../navigation/navigation.dart';
+import '../constants/constants.dart';
+import '../navigation/navigation.dart';
 import '../theme/theme.dart';
 import 'app_version_label.dart';
 

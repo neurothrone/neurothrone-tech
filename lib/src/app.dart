@@ -4,7 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'core/constants/constants.dart';
 import 'core/navigation/navigation.dart';
-import 'core/ui/theme/theme.dart';
+import 'core/theme/theme.dart';
 
 class MainApp extends ConsumerWidget {
   const MainApp({super.key});
