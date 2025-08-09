@@ -35,24 +35,21 @@ class SleepLogListTile extends StatelessWidget {
     final date = log.wokeUpAt;
     return ListTile(
       contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-      leading: SizedBox(
-        width: 48,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              date.dayNumber(),
-              style: Theme.of(context).textTheme.titleLarge,
+      leading: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text(
+            date.dayNumber(),
+            style: Theme.of(context).textTheme.titleLarge,
+          ),
+          Text(
+            date.monthAbbr().toUpperCase(),
+            style: Theme.of(context).textTheme.labelSmall?.copyWith(
+              letterSpacing: 1.0,
+              fontWeight: FontWeight.w600,
             ),
-            Text(
-              date.monthAbbr().toUpperCase(),
-              style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                letterSpacing: 1.0,
-                fontWeight: FontWeight.w600,
-              ),
-            ),
-          ],
-        ),
+          ),
+        ],
       ),
       title: Row(
         children: [
