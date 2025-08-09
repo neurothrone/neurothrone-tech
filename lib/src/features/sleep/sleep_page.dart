@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../core/widgets/widgets.dart';
 import 'sections/history/sleep_history_view.dart';
+import 'sections/history/widgets/year_menu_anchor.dart';
 import 'sections/status/sleep_status_view.dart';
 import 'sections/this_week/domain/domain.dart';
 import 'sections/this_week/sleep_this_week_view.dart';
@@ -23,8 +24,11 @@ class SleepPage extends ConsumerWidget {
       title: "Sleep",
       body: const SleepPageBody(),
       actions: switch (currentTab) {
-        SleepTab.thisWeek => [
+        SleepTab.thisWeek => const [
           ThisWeekIconButton(),
+        ],
+        SleepTab.history => const [
+          YearMenuAnchor(),
         ],
         _ => null,
       },
@@ -81,8 +85,9 @@ class SleepPageTabBar extends ConsumerWidget {
 
     return NavigationBar(
       selectedIndex: currentTab.index,
-      onDestinationSelected: (index) =>
-          ref.read(sleepTabNotifierProvider.notifier).setTab(SleepTab.fromIndex(index)),
+      onDestinationSelected: (index) => ref
+          .read(sleepTabNotifierProvider.notifier)
+          .setTab(SleepTab.fromIndex(index)),
       destinations: [
         const NavigationDestination(
           label: "Awake?",
