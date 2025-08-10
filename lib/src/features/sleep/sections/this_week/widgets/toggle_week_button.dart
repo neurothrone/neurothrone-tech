@@ -5,8 +5,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../domain/domain.dart';
 import '../state/providers.dart';
 
-class ThisWeekIconButton extends ConsumerWidget {
-  const ThisWeekIconButton({super.key});
+class ToggleWeekButton extends ConsumerWidget {
+  const ToggleWeekButton({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -21,7 +21,7 @@ class ThisWeekIconButton extends ConsumerWidget {
         turns: weekView == WeekView.thisWeek ? 0 : 0.5,
         duration: const Duration(milliseconds: 200),
         child: const Icon(
-          Icons.arrow_forward_rounded,
+          Icons.swap_horiz_rounded,
         ),
       ),
       onPressed: () {

@@ -10,7 +10,7 @@ import 'sections/status/sleep_status_view.dart';
 import 'sections/this_week/domain/domain.dart';
 import 'sections/this_week/sleep_this_week_view.dart';
 import 'sections/this_week/state/providers.dart';
-import 'sections/this_week/widgets/this_week_icon_button.dart';
+import 'sections/this_week/widgets/toggle_week_button.dart';
 import 'shared/domain/domain.dart';
 import 'shared/state/providers.dart';
 
@@ -26,7 +26,7 @@ class SleepPage extends ConsumerWidget {
       body: const SleepPageBody(),
       actions: switch (currentTab) {
         SleepTab.thisWeek => const [
-          ThisWeekIconButton(),
+          ToggleWeekButton(),
         ],
         SleepTab.history => const [
           YearMenuAnchor(),
