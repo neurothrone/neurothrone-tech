@@ -10,6 +10,7 @@ final isLikelyAwakeNowProvider = FutureProvider<bool>((ref) async {
   final result = await service.isLikelyAwakeNow();
   return result.when(
     success: (value) => value,
+    // success: (value) => throw Exception(),
     failure: (err) => throw Exception(err.message),
   );
 });
@@ -26,6 +27,14 @@ class SleepStatusView extends ConsumerWidget {
 
     if (async.isLoading && !async.hasValue) {
       return const AwakeLoadingCard(key: ValueKey("loading"));
+    }
+
+    if (async.hasError) {
+      return AwakeErrorCard(
+        key: const ValueKey("error"),
+        message: async.error.toString(),
+        onRetry: () => ref.invalidate(isLikelyAwakeNowProvider),
+      );
     }
 
     return AwakeStatusCard(
