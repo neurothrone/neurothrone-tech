@@ -136,8 +136,8 @@ final class SleepPrototypeService implements SleepNetworkService {
   @override
   Future<Result<bool, NetworkFailure>> isLikelyAwakeNow() async {
     await Future.delayed(const Duration(seconds: 1));
-    // 70% chance to be awake for fun
-    return Result.success(value: DateTime.now().millisecond % 10 < 7);
+    // 50% chance to be awake for fun
+    return Result.success(value: DateTime.now().millisecond % 10 < 5);
   }
 
   int _weekNumber(DateTime date) {
