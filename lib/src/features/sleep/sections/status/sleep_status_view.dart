@@ -3,55 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../core/theme/theme.dart';
-import '../../shared/state/providers.dart';
-
-final isLikelyAwakeNowProvider = FutureProvider<bool>((ref) async {
-  final service = ref.read(sleepServiceProvider);
-  final result = await service.isLikelyAwakeNow();
-  return result.when(
-    success: (value) => value,
-    // success: (value) => throw Exception(),
-    failure: (err) => throw Exception(err.message),
-  );
-});
-
-class AwakePanel extends StatelessWidget {
-  const AwakePanel({
-    super.key,
-    required this.gradient,
-    required this.child,
-  });
-
-  final Gradient gradient;
-  final Widget child;
-
-  @override
-  Widget build(BuildContext context) {
-    return LayoutBuilder(
-      builder: (context, constraints) {
-        return SingleChildScrollView(
-          padding: EdgeInsets.zero,
-          child: ConstrainedBox(
-            constraints: BoxConstraints(
-              minWidth: constraints.maxWidth,
-              minHeight: constraints.maxHeight,
-            ),
-            child: Container(
-              width: double.infinity,
-              decoration: BoxDecoration(gradient: gradient),
-              // Keep internal padding so content never touches edges
-              padding: const EdgeInsets.all(16),
-              child: Align(
-                alignment: Alignment.topCenter,
-                child: child,
-              ),
-            ),
-          ),
-        );
-      },
-    );
-  }
-}
+import 'state/providers.dart';
+import 'widgets/awake_header.dart';
+import 'widgets/status_hint_chip.dart';
 
 class SleepStatusView extends ConsumerWidget {
   const SleepStatusView({super.key});
@@ -81,7 +35,7 @@ class SleepStatusView extends ConsumerWidget {
           Color(0xFF2A2F3A),
         ],
       ),
-      error: (_, __) => const LinearGradient(
+      error: (_, _) => const LinearGradient(
         colors: [
           Color(0xFF3B1F1F),
           Color(0xFF5A2E2E),
@@ -207,7 +161,9 @@ class SleepStatusView extends ConsumerWidget {
             Center(
               child: StatusHintChip(
                 accent: accent,
-                icon: isAwake ? Icons.coffee_rounded : Icons.nightlight_round_rounded,
+                icon: isAwake
+                    ? Icons.coffee_rounded
+                    : Icons.nightlight_round_rounded,
                 label: isAwake
                     ? "Ping-friendly window open"
                     : "DMs queueing until wake",
@@ -226,95 +182,35 @@ class SleepStatusView extends ConsumerWidget {
   }
 }
 
-class AwakeHeader extends StatelessWidget {
-  const AwakeHeader({
+class AwakePanel extends StatelessWidget {
+  const AwakePanel({
     super.key,
-    required this.isRefreshing,
-    required this.onRefresh,
+    required this.gradient,
+    required this.child,
   });
 
-  final bool isRefreshing;
-  final VoidCallback onRefresh;
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Expanded(
-          child: Text(
-            "Is he up?",
-            overflow: TextOverflow.ellipsis,
-            style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-              fontSize: 18,
-              fontWeight: FontWeight.w700,
-            ),
-          ),
-        ),
-        IconButton(
-          tooltip: isRefreshing ? "Refreshing…" : "Refresh",
-          onPressed: isRefreshing ? null : onRefresh,
-          icon: AnimatedSwitcher(
-            duration: const Duration(milliseconds: 200),
-            child: isRefreshing
-                ? const SizedBox(
-                    key: ValueKey("spin"),
-                    width: 18,
-                    height: 18,
-                    child: CircularProgressIndicator(strokeWidth: 2),
-                  )
-                : const Icon(Icons.refresh_rounded, key: ValueKey("icon")),
-          ),
-        ),
-      ],
-    );
-  }
-}
-
-class StatusHintChip extends StatelessWidget {
-  const StatusHintChip({
-    super.key,
-    required this.accent,
-    required this.icon,
-    required this.label,
-  });
-
-  final Color accent;
-  final IconData icon;
-  final String label;
+  final Gradient gradient;
+  final Widget child;
 
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(
       builder: (context, constraints) {
-        // Chip should size to its content, but wrap text on narrow screens.
-        final double cap = 560; // aesthetic cap for very wide layouts
-        final double maxW = constraints.maxWidth.isFinite
-            ? constraints.maxWidth.clamp(0, cap)
-            : cap;
-        return ConstrainedBox(
-          constraints: BoxConstraints(maxWidth: maxW.toDouble()),
-          child: DecoratedBox(
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(20),
-              border: Border.all(color: accent.withValues(alpha: 0.5)),
+        return SingleChildScrollView(
+          padding: EdgeInsets.zero,
+          child: ConstrainedBox(
+            constraints: BoxConstraints(
+              minWidth: constraints.maxWidth,
+              minHeight: constraints.maxHeight,
             ),
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-              child: Row(
-                mainAxisSize: MainAxisSize.min,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Icon(icon, size: 18),
-                  const SizedBox(width: 8),
-                  Flexible(
-                    child: Text(
-                      label,
-                      softWrap: true,
-                      overflow: TextOverflow.visible,
-                    ),
-                  ),
-                ],
+            child: Container(
+              width: double.infinity,
+              decoration: BoxDecoration(gradient: gradient),
+              // Keep internal padding so content never touches edges
+              padding: const EdgeInsets.all(16),
+              child: Align(
+                alignment: Alignment.topCenter,
+                child: child,
               ),
             ),
           ),
