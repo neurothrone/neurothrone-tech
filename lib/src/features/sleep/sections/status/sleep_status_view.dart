@@ -89,43 +89,15 @@ class SleepStatusView extends ConsumerWidget {
       ),
     );
 
-    Widget leadingHeader(WidgetRef ref) {
-      return Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          const Expanded(
-            child: Text(
-              "Is he up?",
-              overflow: TextOverflow.ellipsis,
-            ),
-          ),
-          IconButton(
-            tooltip: isRefreshing ? "Refreshing…" : "Refresh",
-            onPressed: isRefreshing
-                ? null
-                : () => ref.invalidate(isLikelyAwakeNowProvider),
-            icon: AnimatedSwitcher(
-              duration: const Duration(milliseconds: 200),
-              child: isRefreshing
-                  ? const SizedBox(
-                      key: ValueKey("spin"),
-                      width: 18,
-                      height: 18,
-                      child: CircularProgressIndicator(strokeWidth: 2),
-                    )
-                  : const Icon(Icons.refresh_rounded, key: ValueKey("icon")),
-            ),
-          ),
-        ],
-      );
-    }
-
     final Widget body = async.when(
       loading: () => Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          leadingHeader(ref),
+          AwakeHeader(
+            isRefreshing: isRefreshing,
+            onRefresh: () => ref.invalidate(isLikelyAwakeNowProvider),
+          ),
           const SizedBox(height: 16),
           const Center(child: CircularProgressIndicator()),
           const SizedBox(height: 12),
@@ -150,7 +122,10 @@ class SleepStatusView extends ConsumerWidget {
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          leadingHeader(ref),
+          AwakeHeader(
+            isRefreshing: isRefreshing,
+            onRefresh: () => ref.invalidate(isLikelyAwakeNowProvider),
+          ),
           const SizedBox(height: 16),
           Center(
             child: Text(
@@ -189,7 +164,10 @@ class SleepStatusView extends ConsumerWidget {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            leadingHeader(ref),
+            AwakeHeader(
+              isRefreshing: isRefreshing,
+              onRefresh: () => ref.invalidate(isLikelyAwakeNowProvider),
+            ),
             const SizedBox(height: 8),
             Center(
               child: AnimatedSwitcher(
@@ -227,22 +205,10 @@ class SleepStatusView extends ConsumerWidget {
             ),
             const SizedBox(height: 16),
             Center(
-              child: DecoratedBox(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20),
-                  border: Border.all(color: accent.withValues(alpha: 0.5)),
-                ),
-                child: const Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Icon(Icons.coffee_rounded, size: 18),
-                      SizedBox(width: 8),
-                      Text("Ping-friendly window open"),
-                    ],
-                  ),
-                ),
+              child: StatusHintChip(
+                accent: accent,
+                icon: Icons.coffee_rounded,
+                label: "Ping-friendly window open",
               ),
             ),
             const SizedBox(height: 12),
@@ -254,6 +220,97 @@ class SleepStatusView extends ConsumerWidget {
     return AwakePanel(
       gradient: gradient,
       child: body,
+    );
+  }
+}
+
+class AwakeHeader extends StatelessWidget {
+  const AwakeHeader({
+    super.key,
+    required this.isRefreshing,
+    required this.onRefresh,
+  });
+
+  final bool isRefreshing;
+  final VoidCallback onRefresh;
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Expanded(
+          child: Text(
+            "Is he up?",
+            overflow: TextOverflow.ellipsis,
+            style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+              fontSize: 18,
+              fontWeight: FontWeight.w700,
+            ),
+          ),
+        ),
+        IconButton(
+          tooltip: isRefreshing ? "Refreshing…" : "Refresh",
+          onPressed: isRefreshing ? null : onRefresh,
+          icon: AnimatedSwitcher(
+            duration: const Duration(milliseconds: 200),
+            child: isRefreshing
+                ? const SizedBox(
+                    key: ValueKey("spin"),
+                    width: 18,
+                    height: 18,
+                    child: CircularProgressIndicator(strokeWidth: 2),
+                  )
+                : const Icon(Icons.refresh_rounded, key: ValueKey("icon")),
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+class StatusHintChip extends StatelessWidget {
+  const StatusHintChip({
+    super.key,
+    required this.accent,
+    required this.icon,
+    required this.label,
+  });
+
+  final Color accent;
+  final IconData icon;
+  final String label;
+
+  @override
+  Widget build(BuildContext context) {
+    return FractionallySizedBox(
+      widthFactor: 1.0, // allow chip to take up to full available width
+      child: ConstrainedBox(
+        constraints: const BoxConstraints(minWidth: 0, maxWidth: 560),
+        child: DecoratedBox(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(20),
+            border: Border.all(color: accent.withValues(alpha: 0.5)),
+          ),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Icon(icon, size: 18),
+                const SizedBox(width: 8),
+                Flexible(
+                  child: Text(
+                    label,
+                    overflow: TextOverflow.ellipsis,
+                    softWrap: false,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
     );
   }
 }
