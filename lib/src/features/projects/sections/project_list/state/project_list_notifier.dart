@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../../core/utils/utils.dart';
@@ -12,16 +14,40 @@ final class ProjectListNotifier
   ProjectNetworkService get _service => ref.read(projectServiceProvider);
 
   String? _activeQuery;
+  static const int _debounceMs = 350;
 
   @override
   Future<ProjectListState> build() async {
-    const int page = 1;
-    const int pageSize = 10;
+    // Watch a provider that holds {query, page, pageSize}
+    final params = ref.watch(projectListQueryProvider);
+    final rawQuery = params.query?.trim();
+    final normalizedQuery = (rawQuery == null || rawQuery.isEmpty) ? null : rawQuery;
+    final searchChanged = normalizedQuery != _activeQuery;
+    _activeQuery = normalizedQuery;
 
-    final raw = ref.read(searchTextStateProvider).trim();
-    _activeQuery = raw.isEmpty ? null : raw;
+    // If the search text changed, debounce and then re-read latest params.
+    if (searchChanged) {
+      await Future<void>.delayed(const Duration(milliseconds: _debounceMs));
+      final latest = ref.read(projectListQueryProvider);
+      final latestRaw = latest.query?.trim();
+      final latestQuery = (latestRaw == null || latestRaw.isEmpty) ? null : latestRaw;
+      _activeQuery = latestQuery;
 
-    return _fetch(page: page, pageSize: pageSize, query: _activeQuery);
+      // Reset to page 1 when searching (the params provider can also enforce this).
+      final effectivePage = 1;
+      return _fetch(
+        page: effectivePage,
+        pageSize: latest.pageSize,
+        query: _activeQuery,
+      );
+    }
+
+    // No search change: fetch with current params.
+    return _fetch(
+      page: params.page,
+      pageSize: params.pageSize,
+      query: _activeQuery,
+    );
   }
 
   Future<ProjectListState> _fetch({
@@ -51,39 +77,23 @@ final class ProjectListNotifier
     int pageSize = 10,
     String? query,
   }) async {
-    // Cache the active query if provided; otherwise reuse previous.
+    // Delegate to the params provider; build() will react and fetch.
+    final notifier = ref.read(projectListQueryProvider.notifier);
     if (query != null) {
-      final q = query.trim();
-      _activeQuery = q.isEmpty ? null : q;
-      // Keep external state provider in sync for UI pieces that read it.
-      ref.read(searchTextStateProvider.notifier).state = query;
-    }
-
-    final effectiveQuery = _activeQuery;
-    state = const AsyncLoading();
-
-    try {
-      final next = await _fetch(
-        page: page,
-        pageSize: pageSize,
-        query: effectiveQuery,
-      );
-      state = AsyncData(next);
-    } catch (e, st) {
-      state = AsyncError(e, st);
+      notifier.setQuery(query);
+      // setQuery resets page to 1; preserve provided pageSize if given.
+      notifier.setPageSize(pageSize);
+    } else {
+      notifier.setPage(page);
+      notifier.setPageSize(pageSize);
     }
   }
 
   Future<void> setQuery(String value) async {
-    final q = value.trim();
-    _activeQuery = q.isEmpty ? null : q;
-    ref.read(searchTextStateProvider.notifier).state = value;
-    await searchReports(page: 1, query: _activeQuery);
+    ref.read(projectListQueryProvider.notifier).setQuery(value);
   }
 
   Future<void> goToPage(int newPage) async {
-    final current = state.valueOrNull;
-    final size = current?.pageSize ?? 10;
-    await searchReports(page: newPage, pageSize: size);
+    ref.read(projectListQueryProvider.notifier).setPage(newPage);
   }
 }
