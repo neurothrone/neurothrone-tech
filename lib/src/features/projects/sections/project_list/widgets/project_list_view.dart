@@ -13,8 +13,9 @@ final class ProjectListView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
+    return ListView.separated(
       itemCount: items.length,
+      separatorBuilder: (_, _) => const Divider(),
       itemBuilder: (BuildContext context, int index) {
         final ProjectItem item = items[index];
         return ProjectListTile(item: item);
