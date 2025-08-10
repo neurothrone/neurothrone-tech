@@ -25,10 +25,10 @@ class SleepStatusView extends ConsumerWidget {
         (async.isLoading && async.hasValue) || async.isRefreshing;
 
     if (async.isLoading && !async.hasValue) {
-      return const _LoadingCard(key: ValueKey("loading"));
+      return const AwakeLoadingCard(key: ValueKey("loading"));
     }
 
-    return _StatusCard(
+    return AwakeStatusCard(
       key: const ValueKey("status-card"),
       isAwake: async.value ?? false,
       isRefreshing: isRefreshing,
@@ -37,8 +37,8 @@ class SleepStatusView extends ConsumerWidget {
   }
 }
 
-class _LoadingCard extends StatelessWidget {
-  const _LoadingCard({super.key});
+class AwakeLoadingCard extends StatelessWidget {
+  const AwakeLoadingCard({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -47,7 +47,7 @@ class _LoadingCard extends StatelessWidget {
         padding: const EdgeInsets.all(16),
         child: ConstrainedBox(
           constraints: const BoxConstraints(maxWidth: 520),
-          child: _DecoratedCard(
+          child: AwakeDecoratedCard(
             gradient: const LinearGradient(
               colors: [
                 Color(0xFF20232A),
@@ -81,8 +81,12 @@ class _LoadingCard extends StatelessWidget {
   }
 }
 
-class _ErrorCard extends StatelessWidget {
-  const _ErrorCard({super.key, required this.message, required this.onRetry});
+class AwakeErrorCard extends StatelessWidget {
+  const AwakeErrorCard({
+    super.key,
+    required this.message,
+    required this.onRetry,
+  });
 
   final String message;
   final VoidCallback onRetry;
@@ -94,7 +98,7 @@ class _ErrorCard extends StatelessWidget {
         padding: const EdgeInsets.all(16),
         child: ConstrainedBox(
           constraints: const BoxConstraints(maxWidth: 520),
-          child: _DecoratedCard(
+          child: AwakeDecoratedCard(
             gradient: const LinearGradient(
               colors: [
                 Color(0xFF3B1F1F),
@@ -118,7 +122,7 @@ class _ErrorCard extends StatelessWidget {
                 const SizedBox(height: 12),
                 FilledButton.icon(
                   onPressed: onRetry,
-                  icon: const Icon(Icons.refresh),
+                  icon: const Icon(Icons.refresh_rounded),
                   label: const Text("Try again"),
                 ),
               ],
@@ -130,8 +134,8 @@ class _ErrorCard extends StatelessWidget {
   }
 }
 
-class _StatusCard extends StatefulWidget {
-  const _StatusCard({
+class AwakeStatusCard extends StatefulWidget {
+  const AwakeStatusCard({
     super.key,
     required this.isAwake,
     required this.isRefreshing,
@@ -143,10 +147,10 @@ class _StatusCard extends StatefulWidget {
   final VoidCallback onRefresh;
 
   @override
-  State<_StatusCard> createState() => _StatusCardState();
+  State<AwakeStatusCard> createState() => _AwakeStatusCardState();
 }
 
-class _StatusCardState extends State<_StatusCard>
+class _AwakeStatusCardState extends State<AwakeStatusCard>
     with SingleTickerProviderStateMixin {
   late final AnimationController _controller;
 
@@ -180,7 +184,7 @@ class _StatusCardState extends State<_StatusCard>
         padding: const EdgeInsets.all(16),
         child: ConstrainedBox(
           constraints: const BoxConstraints(maxWidth: 640),
-          child: _DecoratedCard(
+          child: AwakeDecoratedCard(
             gradient: LinearGradient(
               colors: [
                 Color.alphaBlend(
@@ -201,7 +205,6 @@ class _StatusCardState extends State<_StatusCard>
                   children: [
                     Text(
                       "Is he up?",
-                      // More readable CascadiaCode, aligned with your theme
                       style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                         fontSize: 18,
                         fontWeight: FontWeight.w700,
@@ -221,7 +224,10 @@ class _StatusCardState extends State<_StatusCard>
                                   strokeWidth: 2,
                                 ),
                               )
-                            : const Icon(Icons.refresh, key: ValueKey("icon")),
+                            : const Icon(
+                                key: ValueKey("icon"),
+                                Icons.refresh_rounded,
+                              ),
                       ),
                     ),
                   ],
@@ -229,8 +235,10 @@ class _StatusCardState extends State<_StatusCard>
                 const SizedBox(height: 8),
                 AnimatedSwitcher(
                   duration: const Duration(milliseconds: 300),
-                  transitionBuilder: (child, anim) =>
-                      ScaleTransition(scale: anim, child: child),
+                  transitionBuilder: (child, anim) => ScaleTransition(
+                    scale: anim,
+                    child: child,
+                  ),
                   child: Text(
                     emoji,
                     key: ValueKey(emoji),
@@ -266,7 +274,7 @@ class _StatusCardState extends State<_StatusCard>
                   child: DecoratedBox(
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(20),
-                      border: Border.all(color: accent.withOpacity(0.5)),
+                      border: Border.all(color: accent.withValues(alpha: 0.5)),
                     ),
                     child: Padding(
                       padding: const EdgeInsets.symmetric(
@@ -277,7 +285,9 @@ class _StatusCardState extends State<_StatusCard>
                         mainAxisSize: MainAxisSize.min,
                         children: [
                           Icon(
-                            awake ? Icons.coffee : Icons.nightlight_round,
+                            awake
+                                ? Icons.coffee_rounded
+                                : Icons.nightlight_round_rounded,
                             size: 18,
                           ),
                           const SizedBox(width: 8),
@@ -301,8 +311,12 @@ class _StatusCardState extends State<_StatusCard>
   }
 }
 
-class _DecoratedCard extends StatelessWidget {
-  const _DecoratedCard({required this.child, required this.gradient});
+class AwakeDecoratedCard extends StatelessWidget {
+  const AwakeDecoratedCard({
+    super.key,
+    required this.child,
+    required this.gradient,
+  });
 
   final Widget child;
   final Gradient gradient;
