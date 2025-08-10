@@ -19,7 +19,7 @@ final class ProjectListNotifier
   @override
   Future<ProjectListState> build() async {
     // Watch a provider that holds {query, page, pageSize}
-    final params = ref.watch(projectListQueryProvider);
+    final params = ref.watch(projectListQueryNotifierProvider);
     final rawQuery = params.query?.trim();
     final normalizedQuery = (rawQuery == null || rawQuery.isEmpty) ? null : rawQuery;
     final searchChanged = normalizedQuery != _activeQuery;
@@ -28,7 +28,7 @@ final class ProjectListNotifier
     // If the search text changed, debounce and then re-read latest params.
     if (searchChanged) {
       await Future<void>.delayed(const Duration(milliseconds: _debounceMs));
-      final latest = ref.read(projectListQueryProvider);
+      final latest = ref.read(projectListQueryNotifierProvider);
       final latestRaw = latest.query?.trim();
       final latestQuery = (latestRaw == null || latestRaw.isEmpty) ? null : latestRaw;
       _activeQuery = latestQuery;
@@ -78,7 +78,7 @@ final class ProjectListNotifier
     String? query,
   }) async {
     // Delegate to the params provider; build() will react and fetch.
-    final notifier = ref.read(projectListQueryProvider.notifier);
+    final notifier = ref.read(projectListQueryNotifierProvider.notifier);
     if (query != null) {
       notifier.setQuery(query);
       // setQuery resets page to 1; preserve provided pageSize if given.
@@ -90,10 +90,10 @@ final class ProjectListNotifier
   }
 
   Future<void> setQuery(String value) async {
-    ref.read(projectListQueryProvider.notifier).setQuery(value);
+    ref.read(projectListQueryNotifierProvider.notifier).setQuery(value);
   }
 
   Future<void> goToPage(int newPage) async {
-    ref.read(projectListQueryProvider.notifier).setPage(newPage);
+    ref.read(projectListQueryNotifierProvider.notifier).setPage(newPage);
   }
 }
