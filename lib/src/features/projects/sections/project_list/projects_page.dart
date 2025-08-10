@@ -66,104 +66,38 @@ class ProjectsPageBottomBar extends StatelessWidget {
         child: Consumer(
           builder: (context, ref, _) {
             final reportsAsyncState = ref.watch(projectListNotifierProvider);
-            final isLoading = reportsAsyncState.isLoading;
+            return Builder(
+              builder: (_) {
+                final data =
+                    reportsAsyncState.valueOrNull; // keep last data if any
+                final currentPage = data?.currentPage ?? 1;
+                final pageSize = data?.pageSize ?? 10;
+                final totalPages = data == null
+                    ? 1
+                    : (data.totalCount / pageSize).ceil();
+                // Disable interactions only while loading; keep the bar rendered with last data
+                final enabled = !reportsAsyncState.isLoading && data != null;
 
-            return reportsAsyncState.maybeWhen(
-              data: (ProjectListState result) => PaginationBar(
-                currentPage: result.currentPage,
-                totalPages: (result.totalCount / result.pageSize).ceil(),
-                onPageChanged: (int newPage) => ref
-                    .read(projectListNotifierProvider.notifier)
-                    .searchReports(page: newPage),
-                enabled: !isLoading,
-              ),
-              orElse: () => PaginationBar(
-                currentPage: 1,
-                totalPages: 1,
-                onPageChanged: (_) {},
-                enabled: false,
-              ),
+                return IgnorePointer(
+                  ignoring: !enabled,
+                  child: AnimatedOpacity(
+                    opacity: enabled ? 1.0 : 0.5,
+                    duration: const Duration(milliseconds: 150),
+                    child: PaginationBar(
+                      currentPage: currentPage,
+                      totalPages: totalPages,
+                      onPageChanged: (int newPage) => ref
+                          .read(projectListNotifierProvider.notifier)
+                          .searchReports(page: newPage),
+                      enabled: enabled,
+                    ),
+                  ),
+                );
+              },
             );
           },
         ),
       ),
-    );
-  }
-}
-
-class PaginationBar extends StatelessWidget {
-  const PaginationBar({
-    super.key,
-    required this.currentPage,
-    required this.totalPages,
-    required this.onPageChanged,
-    this.enabled = true,
-  });
-
-  final int currentPage;
-  final int totalPages;
-  final ValueChanged<int> onPageChanged;
-  final bool enabled;
-
-  @override
-  Widget build(BuildContext context) {
-    final List<int> pageNumbers = List.generate(
-      3,
-          (index) => currentPage - 1 + index,
-    ).where((page) => page > 0 && page <= totalPages).toList();
-
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        IconButton(
-          onPressed: enabled && currentPage > 1 ? () => onPageChanged(1) : null,
-          icon: Icon(
-            Icons.first_page,
-            color: currentPage > 1
-                ? Colors.white
-                : Colors.white.withValues(alpha: 0.3),
-          ),
-          tooltip: "First Page",
-        ),
-        const SizedBox(width: 4),
-        ...pageNumbers.map(
-              (page) => Row(
-            children: [
-              TextButton(
-                onPressed: enabled && page != currentPage
-                    ? () => onPageChanged(page)
-                    : null,
-                style: TextButton.styleFrom(
-                  shape: const CircleBorder(),
-                  padding: const EdgeInsets.all(18),
-                ),
-                child: Text(
-                  page.toString(),
-                  style: TextStyle(
-                    color: enabled && page != currentPage
-                        ? Colors.white
-                        : Colors.white.withValues(alpha: 0.4),
-                    fontWeight: page == currentPage ? FontWeight.bold : null,
-                  ),
-                ),
-              ),
-              const SizedBox(width: 4),
-            ],
-          ),
-        ),
-        IconButton(
-          onPressed: enabled && currentPage < totalPages
-              ? () => onPageChanged(totalPages)
-              : null,
-          icon: Icon(
-            Icons.last_page,
-            color: currentPage < totalPages
-                ? Colors.white
-                : Colors.white.withValues(alpha: 0.3),
-          ),
-          tooltip: "Last Page",
-        ),
-      ],
     );
   }
 }
