@@ -5,9 +5,9 @@ import '../../../shared/data/responses/responses.dart';
 import '../../../shared/services/services.dart';
 import 'project_list_state.dart';
 
-final class ProjectListController
+final class ProjectListNotifier
     extends StateNotifier<AsyncValue<ProjectListState>> {
-  ProjectListController({
+  ProjectListNotifier({
     required ProjectNetworkService service,
   }) : _service = service,
        super(AsyncValue.data(ProjectListState.initial()));
