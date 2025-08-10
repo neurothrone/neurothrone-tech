@@ -207,8 +207,10 @@ class SleepStatusView extends ConsumerWidget {
             Center(
               child: StatusHintChip(
                 accent: accent,
-                icon: Icons.coffee_rounded,
-                label: "Ping-friendly window open",
+                icon: isAwake ? Icons.coffee_rounded : Icons.nightlight_round_rounded,
+                label: isAwake
+                    ? "Ping-friendly window open"
+                    : "DMs queueing until wake",
               ),
             ),
             const SizedBox(height: 12),
@@ -283,34 +285,41 @@ class StatusHintChip extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return FractionallySizedBox(
-      widthFactor: 1.0, // allow chip to take up to full available width
-      child: ConstrainedBox(
-        constraints: const BoxConstraints(minWidth: 0, maxWidth: 560),
-        child: DecoratedBox(
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(20),
-            border: Border.all(color: accent.withValues(alpha: 0.5)),
-          ),
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-            child: Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Icon(icon, size: 18),
-                const SizedBox(width: 8),
-                Flexible(
-                  child: Text(
-                    label,
-                    overflow: TextOverflow.ellipsis,
-                    softWrap: false,
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        // Chip should size to its content, but wrap text on narrow screens.
+        final double cap = 560; // aesthetic cap for very wide layouts
+        final double maxW = constraints.maxWidth.isFinite
+            ? constraints.maxWidth.clamp(0, cap)
+            : cap;
+        return ConstrainedBox(
+          constraints: BoxConstraints(maxWidth: maxW.toDouble()),
+          child: DecoratedBox(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(20),
+              border: Border.all(color: accent.withValues(alpha: 0.5)),
+            ),
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(icon, size: 18),
+                  const SizedBox(width: 8),
+                  Flexible(
+                    child: Text(
+                      label,
+                      softWrap: true,
+                      overflow: TextOverflow.visible,
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
-        ),
-      ),
+        );
+      },
     );
   }
 }
