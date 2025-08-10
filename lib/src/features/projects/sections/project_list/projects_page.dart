@@ -20,29 +20,9 @@ class ProjectsPage extends StatelessWidget {
       title: "Projects",
       actions: [
         ProjectViewModeSwitcher(),
-        ProjectsRefreshButton(),
       ],
       body: ProjectsPageBody(),
       bottomNavigationBar: ProjectsPageBottomBar(),
-    );
-  }
-}
-
-class ProjectsRefreshButton extends ConsumerWidget {
-  const ProjectsRefreshButton({super.key});
-
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final reportsAsyncState = ref.watch(projectListNotifierProvider);
-    final isLoading = reportsAsyncState.isLoading;
-
-    return IconButton(
-      tooltip: "Refresh Projects",
-      icon: const Icon(Icons.refresh_rounded),
-      style: Theme.of(context).iconButtonTheme.style,
-      onPressed: isLoading
-          ? null
-          : () => ref.read(projectListNotifierProvider.notifier).searchReports(),
     );
   }
 }
@@ -107,6 +87,83 @@ class ProjectsPageBottomBar extends StatelessWidget {
           },
         ),
       ),
+    );
+  }
+}
+
+class PaginationBar extends StatelessWidget {
+  const PaginationBar({
+    super.key,
+    required this.currentPage,
+    required this.totalPages,
+    required this.onPageChanged,
+    this.enabled = true,
+  });
+
+  final int currentPage;
+  final int totalPages;
+  final ValueChanged<int> onPageChanged;
+  final bool enabled;
+
+  @override
+  Widget build(BuildContext context) {
+    final List<int> pageNumbers = List.generate(
+      3,
+          (index) => currentPage - 1 + index,
+    ).where((page) => page > 0 && page <= totalPages).toList();
+
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        IconButton(
+          onPressed: enabled && currentPage > 1 ? () => onPageChanged(1) : null,
+          icon: Icon(
+            Icons.first_page,
+            color: currentPage > 1
+                ? Colors.white
+                : Colors.white.withValues(alpha: 0.3),
+          ),
+          tooltip: "First Page",
+        ),
+        const SizedBox(width: 4),
+        ...pageNumbers.map(
+              (page) => Row(
+            children: [
+              TextButton(
+                onPressed: enabled && page != currentPage
+                    ? () => onPageChanged(page)
+                    : null,
+                style: TextButton.styleFrom(
+                  shape: const CircleBorder(),
+                  padding: const EdgeInsets.all(18),
+                ),
+                child: Text(
+                  page.toString(),
+                  style: TextStyle(
+                    color: enabled && page != currentPage
+                        ? Colors.white
+                        : Colors.white.withValues(alpha: 0.4),
+                    fontWeight: page == currentPage ? FontWeight.bold : null,
+                  ),
+                ),
+              ),
+              const SizedBox(width: 4),
+            ],
+          ),
+        ),
+        IconButton(
+          onPressed: enabled && currentPage < totalPages
+              ? () => onPageChanged(totalPages)
+              : null,
+          icon: Icon(
+            Icons.last_page,
+            color: currentPage < totalPages
+                ? Colors.white
+                : Colors.white.withValues(alpha: 0.3),
+          ),
+          tooltip: "Last Page",
+        ),
+      ],
     );
   }
 }
