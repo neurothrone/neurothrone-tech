@@ -8,6 +8,7 @@ class AppScaffold extends StatelessWidget {
     required this.title,
     required this.body,
     this.actions,
+    this.bottom,
     this.persistentFooterButtons,
     this.bottomNavigationBar,
   });
@@ -15,6 +16,7 @@ class AppScaffold extends StatelessWidget {
   final String title;
   final Widget body;
   final List<Widget>? actions;
+  final PreferredSizeWidget? bottom;
   final List<Widget>? persistentFooterButtons;
   final Widget? bottomNavigationBar;
 
@@ -26,6 +28,7 @@ class AppScaffold extends StatelessWidget {
       appBar: CustomAppBar(
         title: title,
         actions: actions,
+        bottom: bottom,
       ),
       drawer: isMobile ? AppDrawer() : null,
       body: isMobile
