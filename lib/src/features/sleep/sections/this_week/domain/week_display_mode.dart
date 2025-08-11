@@ -1,0 +1,4 @@
+enum WeekDisplayMode {
+  list,
+  chart,
+}
