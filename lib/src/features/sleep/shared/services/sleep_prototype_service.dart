@@ -4,14 +4,6 @@ import '../../../../core/utils/utils.dart';
 import '../data/models/models.dart';
 import 'services.dart';
 
-// Helper to build a DateTime at a specific time on a specific day
-DateTime atTime(DateTime day, int minutesFromMidnight) {
-  final d = DateUtils.dateOnly(day);
-  final h = minutesFromMidnight ~/ 60;
-  final m = minutesFromMidnight % 60;
-  return DateTime(d.year, d.month, d.day, h, m);
-}
-
 final class SleepPrototypeService implements SleepNetworkService {
   final List<SleepLog> _allLogs = _generateFakeLogs();
 
@@ -61,12 +53,12 @@ final class SleepPrototypeService implements SleepNetworkService {
     await Future.delayed(const Duration(seconds: 1));
 
     final now = DateTime.now();
-    final currentWeek = _weekNumber(now);
+    final currentWeek = now.weekNumber();
     final currentYear = now.year;
 
     final logs = _allLogs.where((log) {
       final date = log.wokeUpAt;
-      return _weekNumber(date) == currentWeek && date.year == currentYear;
+      return date.weekNumber() == currentWeek && date.year == currentYear;
     }).toList();
 
     return Result.success(value: logs);
@@ -79,12 +71,12 @@ final class SleepPrototypeService implements SleepNetworkService {
 
     final now = DateTime.now();
     final previousWeekDate = now.subtract(Duration(days: 7));
-    final previousWeek = _weekNumber(previousWeekDate);
+    final previousWeek = previousWeekDate.weekNumber();
     final year = previousWeekDate.year;
 
     final logs = _allLogs.where((log) {
       final date = log.wokeUpAt;
-      return _weekNumber(date) == previousWeek && date.year == year;
+      return date.weekNumber() == previousWeek && date.year == year;
     }).toList();
 
     return Result.success(value: logs);
@@ -99,7 +91,7 @@ final class SleepPrototypeService implements SleepNetworkService {
     final logs = _allLogs.where((log) => log.wokeUpAt.year == year);
     final Map<int, List<SleepLog>> weekMap = {};
     for (final log in logs) {
-      final week = _weekNumber(log.wokeUpAt);
+      final week = log.wokeUpAt.weekNumber();
       weekMap.putIfAbsent(week, () => []).add(log);
     }
 
@@ -132,7 +124,7 @@ final class SleepPrototypeService implements SleepNetworkService {
 
     final logs = _allLogs.where((log) {
       final date = log.wokeUpAt;
-      return date.year == year && _weekNumber(date) == week;
+      return date.year == year && date.weekNumber() == week;
     });
     final totalSeconds = logs.fold<int>(
       0,
@@ -161,11 +153,5 @@ final class SleepPrototypeService implements SleepNetworkService {
     await Future.delayed(const Duration(seconds: 2));
     // 50% chance to be awake for fun
     return Result.success(value: DateTime.now().millisecond % 10 < 5);
-  }
-
-  int _weekNumber(DateTime date) {
-    final firstDayOfYear = DateTime(date.year, 1, 1);
-    final daysSinceYearStart = date.difference(firstDayOfYear).inDays;
-    return ((daysSinceYearStart + firstDayOfYear.weekday) / 7).ceil();
   }
 }

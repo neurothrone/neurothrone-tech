@@ -1,4 +1,14 @@
+import 'package:flutter/material.dart';
+
 import 'package:intl/intl.dart';
+
+extension DateTimeUtils on DateTime {
+  int weekNumber() {
+    final firstDayOfYear = DateTime(year, 1, 1);
+    final daysSinceYearStart = difference(firstDayOfYear).inDays;
+    return ((daysSinceYearStart + firstDayOfYear.weekday) / 7).ceil();
+  }
+}
 
 extension DateTimeFormattingX on DateTime {
   String weekdayWithTimeLabel() {
@@ -47,4 +57,12 @@ DateTime isoWeekStart(int year, int week) {
   );
   final start = mondayOfWeek1.add(Duration(days: (week - 1) * 7));
   return DateTime(start.year, start.month, start.day);
+}
+
+// Helper to build a DateTime at a specific time on a specific day
+DateTime atTime(DateTime day, int minutesFromMidnight) {
+  final d = DateUtils.dateOnly(day);
+  final h = minutesFromMidnight ~/ 60;
+  final m = minutesFromMidnight % 60;
+  return DateTime(d.year, d.month, d.day, h, m);
 }
