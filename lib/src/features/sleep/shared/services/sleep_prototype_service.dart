@@ -1,6 +1,16 @@
+import 'package:flutter/material.dart';
+
 import '../../../../core/utils/utils.dart';
 import '../data/models/models.dart';
 import 'services.dart';
+
+// Helper to build a DateTime at a specific time on a specific day
+DateTime atTime(DateTime day, int minutesFromMidnight) {
+  final d = DateUtils.dateOnly(day);
+  final h = minutesFromMidnight ~/ 60;
+  final m = minutesFromMidnight % 60;
+  return DateTime(d.year, d.month, d.day, h, m);
+}
 
 final class SleepPrototypeService implements SleepNetworkService {
   final List<SleepLog> _allLogs = _generateFakeLogs();
@@ -9,20 +19,36 @@ final class SleepPrototypeService implements SleepNetworkService {
     final now = DateTime.now();
     final List<SleepLog> logs = [];
 
-    // Generate 50 logs, 1 per day, for the past ~7 weeks
+    // --- Recent ~7 weeks (50 days) with a daily ~95 min circadian delay ---
+    // Start 49 days ago so we move forward to 'now' (chronological order when sorted)
+    final start = DateUtils.dateOnly(now).subtract(const Duration(days: 49));
+    const baseWake = 8 * 60; // 08:00 baseline in minutes
+    const driftPerDay = 95; // ~1h35m forward per day
+
     for (int i = 0; i < 50; i++) {
-      final wakeUp = now.subtract(Duration(hours: i * 24 + 8));
-      final sleep = wakeUp.subtract(Duration(hours: 7, minutes: i % 60));
-      logs.add(SleepLog(wokeUpAt: wakeUp, fellAsleepAt: sleep));
+      final day = start.add(Duration(days: i));
+      // Drift the wakeup time forward each day, wrap at 24h
+      final wakeMinutes = (baseWake + i * driftPerDay) % (24 * 60);
+      final wokeUp = atTime(day, wakeMinutes);
+
+      // Sleep duration around 7.5h with small variation that cycles
+      final sleepDurationMin = 450 + (i % 30) - 15; // 7h30m ±15m
+      final fellAsleep = wokeUp.subtract(Duration(minutes: sleepDurationMin));
+
+      logs.add(SleepLog(wokeUpAt: wokeUp, fellAsleepAt: fellAsleep));
     }
 
-    // Generate logs for last year and two years ago - one per day for 2 months (60 days each)
+    // --- Last year and two years ago: keep drift but different baseline ---
     for (final year in [now.year - 1, now.year - 2]) {
-      final start = DateTime(year, 1, 1, 8);
+      final startYear = DateTime(year, 1, 1);
       for (int i = 0; i < 60; i++) {
-        final wakeUp = start.add(Duration(days: i));
-        final sleep = wakeUp.subtract(Duration(hours: 7, minutes: i % 60));
-        logs.add(SleepLog(wokeUpAt: wakeUp, fellAsleepAt: sleep));
+        final day = startYear.add(Duration(days: i));
+        final wakeMinutes =
+            (6 * 60 + i * 75) % (24 * 60); // baseline 06:00, ~1h15m drift/day
+        final wokeUp = atTime(day, wakeMinutes);
+        final sleepDurationMin = 420 + (i % 20) - 10; // ~7h ±10m
+        final fellAsleep = wokeUp.subtract(Duration(minutes: sleepDurationMin));
+        logs.add(SleepLog(wokeUpAt: wokeUp, fellAsleepAt: fellAsleep));
       }
     }
 
@@ -125,10 +151,7 @@ final class SleepPrototypeService implements SleepNetworkService {
   @override
   Future<Result<List<int>, NetworkFailure>> getHistoryYears() async {
     await Future.delayed(const Duration(seconds: 1));
-    final years = _allLogs
-        .map((e) => e.wokeUpAt.year)
-        .toSet()
-        .toList()
+    final years = _allLogs.map((e) => e.wokeUpAt.year).toSet().toList()
       ..sort((a, b) => b.compareTo(a));
     return Result.success(value: years);
   }
