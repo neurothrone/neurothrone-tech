@@ -5,8 +5,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../domain/domain.dart';
 import '../state/providers.dart';
 
-class ToggleWeekButton extends ConsumerWidget {
-  const ToggleWeekButton({super.key});
+class WeekViewToggle extends ConsumerWidget {
+  const WeekViewToggle({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
