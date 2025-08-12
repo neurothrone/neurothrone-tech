@@ -7,13 +7,11 @@ import 'services.dart';
 final class SleepApiService implements SleepNetworkService {
   @override
   Future<Result<List<SleepLog>, NetworkFailure>> getCurrentWeekSleepLogs() {
-    // TODO: implement getCurrentWeekSleepLogs
     throw UnimplementedError();
   }
 
   @override
   Future<Result<List<SleepLog>, NetworkFailure>> getPreviousWeekSleepLogs() {
-    // TODO: implement getPreviousWeekSleepLogs
     throw UnimplementedError();
   }
 
@@ -21,7 +19,6 @@ final class SleepApiService implements SleepNetworkService {
   Future<Result<YearlySleepSummary, NetworkFailure>> getYearlySleepSummary({
     required int year,
   }) {
-    // TODO: implement getYearlySleepSummary
     throw UnimplementedError();
   }
 
@@ -30,7 +27,6 @@ final class SleepApiService implements SleepNetworkService {
     required int year,
     required int week,
   }) {
-    // TODO: implement getSleepSummaryForWeek
     throw UnimplementedError();
   }
 
@@ -39,19 +35,16 @@ final class SleepApiService implements SleepNetworkService {
     required int year,
     required int week,
   }) {
-    // TODO: implement getLogsForYearAndWeek
     throw UnimplementedError();
   }
 
   @override
   Future<Result<List<int>, NetworkFailure>> getHistoryYears() {
-    // TODO: implement getHistoryYears
     throw UnimplementedError();
   }
 
   @override
   Future<Result<bool, NetworkFailure>> isLikelyAwakeNow() {
-    // TODO: implement isLikelyAwakeNow
     throw UnimplementedError();
   }
 }
