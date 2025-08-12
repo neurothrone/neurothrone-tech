@@ -6,11 +6,12 @@ import '../../../../../core/utils/utils.dart';
 import '../../../shared/data/models/models.dart';
 import '../../../shared/services/services.dart';
 import '../../../shared/state/providers.dart';
+import '../../../shared/state/sleep_list_state.dart';
 import '../domain/domain.dart';
 import 'providers.dart';
-import 'sleep_list_state.dart';
 
-final class SleepListNotifier extends AutoDisposeAsyncNotifier<SleepListState> {
+final class SleepWeekListNotifier
+    extends AutoDisposeAsyncNotifier<SleepListState> {
   SleepNetworkService get _service => ref.read(sleepServiceProvider);
 
   @override

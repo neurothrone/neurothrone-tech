@@ -1,8 +1,8 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../shared/state/sleep_list_state.dart';
 import '../domain/domain.dart';
-import 'sleep_list_notifier.dart';
-import 'sleep_list_state.dart';
+import 'sleep_week_list_notifier.dart';
 
 final weekViewStateProvider = StateProvider<WeekView>(
   (ref) => WeekView.thisWeek,
@@ -13,6 +13,6 @@ final weekDisplayModeStateProvider = StateProvider<WeekDisplayMode>((ref) {
 });
 
 final sleepListNotifierProvider =
-    AsyncNotifierProvider.autoDispose<SleepListNotifier, SleepListState>(
-      SleepListNotifier.new,
+    AsyncNotifierProvider.autoDispose<SleepWeekListNotifier, SleepListState>(
+      SleepWeekListNotifier.new,
     );

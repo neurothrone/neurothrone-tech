@@ -5,7 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../shared/data/models/models.dart';
 import '../../../shared/services/services.dart';
 import '../../../shared/state/providers.dart';
-import '../../this_week/state/sleep_list_state.dart';
+import '../../../shared/state/sleep_list_state.dart';
 
 final class WeekDetailNotifier
     extends AutoDisposeFamilyAsyncNotifier<SleepListState, SleepWeekSummary> {

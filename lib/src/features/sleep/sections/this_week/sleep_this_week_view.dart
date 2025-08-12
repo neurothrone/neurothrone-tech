@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../shared/state/sleep_list_state.dart';
+import '../../shared/widgets/sleep_log_list.dart';
 import 'domain/domain.dart';
 import 'state/providers.dart';
-import 'state/sleep_list_state.dart';
-import 'widgets/sleep_log_list.dart';
 import 'widgets/week_wake_line_chart.dart';
 
 class SleepThisWeekView extends ConsumerWidget {

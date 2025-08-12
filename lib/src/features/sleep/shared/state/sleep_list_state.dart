@@ -1,4 +1,4 @@
-import '../../../shared/data/models/models.dart';
+import '../data/models/models.dart';
 
 final class SleepListState {
   const SleepListState({

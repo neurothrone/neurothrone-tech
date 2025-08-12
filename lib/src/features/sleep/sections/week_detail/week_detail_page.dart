@@ -5,7 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../../core/widgets/centered_error_text.dart';
 import '../../../../core/widgets/centered_progress_indicator.dart';
 import '../../shared/data/models/models.dart';
-import '../this_week/widgets/sleep_log_list.dart';
+import '../../shared/widgets/sleep_log_list.dart';
 import 'state/providers.dart';
 
 class WeekDetailPage extends StatelessWidget {
