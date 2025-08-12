@@ -48,6 +48,18 @@ final class SleepPrototypeService implements SleepNetworkService {
   }
 
   @override
+  Future<Result<SleepLog?, NetworkFailure>> getMostRecentSleepLog() async {
+    await Future.delayed(const Duration(seconds: 1));
+
+    // Sort logs by wokeUpAt in descending order and take the first one
+    final mostRecentLog = _allLogs.isNotEmpty
+        ? _allLogs.reduce((a, b) => a.wokeUpAt.isAfter(b.wokeUpAt) ? a : b)
+        : null;
+
+    return Result.success(value: mostRecentLog);
+  }
+
+  @override
   Future<Result<List<SleepLog>, NetworkFailure>>
   getCurrentWeekSleepLogs() async {
     await Future.delayed(const Duration(seconds: 1));
