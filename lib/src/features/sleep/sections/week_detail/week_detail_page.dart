@@ -33,11 +33,11 @@ class WeekDetailPage extends StatelessWidget {
       ),
       body: Consumer(
         builder: (context, ref, child) {
-          final logsAsync = ref.watch(
+          final logsAsyncState = ref.watch(
             weekDetailNotifierProvider(summary),
           );
 
-          return logsAsync.when(
+          return logsAsyncState.when(
             data: (SleepListState state) {
               if (state.logs.isEmpty) {
                 return const Center(

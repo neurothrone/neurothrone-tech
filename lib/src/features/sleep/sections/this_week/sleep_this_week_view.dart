@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../../core/widgets/widgets.dart';
 import '../../shared/state/sleep_list_state.dart';
 import '../../shared/widgets/sleep_log_list.dart';
 import 'domain/domain.dart';
@@ -13,7 +14,7 @@ class SleepThisWeekView extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final sleepLogsAsyncState = ref.watch(
+    final logsAsyncState = ref.watch(
       sleepListNotifierProvider,
     );
 
@@ -27,7 +28,7 @@ class SleepThisWeekView extends ConsumerWidget {
           child: child,
         );
       },
-      child: sleepLogsAsyncState.when(
+      child: logsAsyncState.when(
         data: (SleepListState state) {
           if (state.logs.isEmpty) {
             return const Center(
@@ -46,10 +47,8 @@ class SleepThisWeekView extends ConsumerWidget {
 
           return SleepLogList(logs: state.logs);
         },
-        loading: () => const Center(child: CircularProgressIndicator()),
-        error: (error, stackTrace) => Center(
-          child: Text("Error loading sleep logs: $error"),
-        ),
+        error: (e, st) => CenteredErrorText(errorMessage: e.toString()),
+        loading: () => const CenteredProgressIndicator(),
       ),
     );
   }
