@@ -10,7 +10,7 @@ import 'sections/status/sleep_status_view.dart';
 import 'sections/this_week/domain/domain.dart';
 import 'sections/this_week/sleep_this_week_view.dart';
 import 'sections/this_week/state/providers.dart';
-import 'sections/this_week/widgets/week_display_mode_toggle.dart';
+import 'shared/widgets/week_display_mode_toggle.dart';
 import 'sections/this_week/widgets/week_view_toggle.dart';
 import 'shared/domain/domain.dart';
 import 'shared/state/providers.dart';

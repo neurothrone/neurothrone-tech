@@ -17,3 +17,7 @@ final sleepTabNotifierProvider =
         service: serviceLocator<SleepPreferencesService>(),
       );
     });
+
+final weekDisplayModeStateProvider = StateProvider.autoDispose<WeekDisplayMode>(
+  (ref) => WeekDisplayMode.list,
+);

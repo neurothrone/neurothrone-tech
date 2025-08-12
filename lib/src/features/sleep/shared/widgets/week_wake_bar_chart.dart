@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:intl/intl.dart';
 
-import '../../../shared/data/models/models.dart';
+import '../data/models/models.dart';
 
 class WeekWakeBarChart extends StatelessWidget {
   const WeekWakeBarChart({super.key, required this.logs});
