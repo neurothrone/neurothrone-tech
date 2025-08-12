@@ -2,6 +2,8 @@ import '../../../../core/utils/utils.dart';
 import '../data/models/models.dart';
 
 abstract interface class SleepNetworkService {
+  Future<Result<SleepLog?, NetworkFailure>> getMostRecentSleepLog();
+
   Future<Result<List<SleepLog>, NetworkFailure>> getCurrentWeekSleepLogs();
 
   Future<Result<List<SleepLog>, NetworkFailure>> getPreviousWeekSleepLogs();

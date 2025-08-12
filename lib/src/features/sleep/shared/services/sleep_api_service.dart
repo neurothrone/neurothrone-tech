@@ -1,10 +1,13 @@
 import '../../../../core/utils/utils.dart';
-import '../data/models/sleep_log.dart';
-import '../data/models/sleep_week_summary.dart';
-import '../data/models/yearly_sleep_summary.dart';
+import '../data/models/models.dart';
 import 'services.dart';
 
 final class SleepApiService implements SleepNetworkService {
+  @override
+  Future<Result<SleepLog?, NetworkFailure>> getMostRecentSleepLog() {
+    throw UnimplementedError();
+  }
+
   @override
   Future<Result<List<SleepLog>, NetworkFailure>> getCurrentWeekSleepLogs() {
     throw UnimplementedError();
