@@ -8,9 +8,9 @@ final weekViewStateProvider = StateProvider<WeekView>(
   (ref) => WeekView.thisWeek,
 );
 
-final weekDisplayModeStateProvider = StateProvider<WeekDisplayMode>((ref) {
-  return WeekDisplayMode.list;
-});
+final weekDisplayModeStateProvider = StateProvider.autoDispose<WeekDisplayMode>(
+  (ref) => WeekDisplayMode.list,
+);
 
 final sleepListNotifierProvider =
     AsyncNotifierProvider.autoDispose<SleepWeekListNotifier, SleepListState>(
