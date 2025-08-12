@@ -141,6 +141,21 @@ final class SleepPrototypeService implements SleepNetworkService {
   }
 
   @override
+  Future<Result<List<SleepLog>, NetworkFailure>> getLogsForYearAndWeek({
+    required int year,
+    required int week,
+  }) async {
+    await Future.delayed(const Duration(seconds: 1));
+
+    final logs = _allLogs.where((log) {
+      final d = log.wokeUpAt;
+      return d.year == year && d.weekNumber() == week;
+    }).toList()..sort((a, b) => a.wokeUpAt.compareTo(b.wokeUpAt));
+
+    return Result.success(value: logs);
+  }
+
+  @override
   Future<Result<List<int>, NetworkFailure>> getHistoryYears() async {
     await Future.delayed(const Duration(seconds: 1));
     final years = _allLogs.map((e) => e.wokeUpAt.year).toSet().toList()

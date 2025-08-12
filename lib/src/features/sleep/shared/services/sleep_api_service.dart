@@ -35,6 +35,15 @@ final class SleepApiService implements SleepNetworkService {
   }
 
   @override
+  Future<Result<List<SleepLog>, NetworkFailure>> getLogsForYearAndWeek({
+    required int year,
+    required int week,
+  }) {
+    // TODO: implement getLogsForYearAndWeek
+    throw UnimplementedError();
+  }
+
+  @override
   Future<Result<List<int>, NetworkFailure>> getHistoryYears() {
     // TODO: implement getHistoryYears
     throw UnimplementedError();
