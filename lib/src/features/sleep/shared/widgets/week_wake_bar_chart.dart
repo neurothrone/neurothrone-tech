@@ -29,7 +29,8 @@ class WeekWakeBarChart extends StatelessWidget {
     // Build bar groups: one per day, a single rod spanning Sleep -> Wake.
     // If fellAsleepAt is null, draw a short cap at the wake time.
     final groups = <BarChartGroupData>[];
-    const markerHeight = 0.25; // ~15 minutes visual cap when sleep start is unknown
+    const markerHeight =
+        0.25; // ~15 minutes visual cap when sleep start is unknown
 
     for (var i = 0; i < sorted.length; i++) {
       final log = sorted[i];
@@ -46,11 +47,11 @@ class WeekWakeBarChart extends StatelessWidget {
         toY: wakeY,
         width: 14,
         borderRadius: BorderRadius.circular(6),
-        color: unknownStart ? cs.primary.withOpacity(0.6) : cs.primary,
+        color: unknownStart ? cs.primary.withValues(alpha: 0.6) : cs.primary,
         backDrawRodData: BackgroundBarChartRodData(
           show: true,
           toY: 24,
-          color: cs.surfaceVariant.withOpacity(0.25),
+          color: cs.surfaceContainerHighest.withValues(alpha: 0.25),
         ),
       );
 
@@ -75,7 +76,10 @@ class WeekWakeBarChart extends StatelessWidget {
         crossAxisAlignment: WrapCrossAlignment.center,
         children: [
           _LegendDot(label: "Sleep → Wake", color: cs.primary),
-          _LegendDot(label: "Unknown start", color: cs.primary.withOpacity(0.6)),
+          _LegendDot(
+            label: "Unknown start",
+            color: cs.primary.withValues(alpha: 0.6),
+          ),
         ],
       ),
     );
