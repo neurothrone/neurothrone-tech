@@ -4,11 +4,11 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../core/theme/theme.dart';
 import '../../../../core/widgets/widgets.dart';
-import 'domain/project_view_mode.dart';
+import 'domain/domain.dart';
 import 'state/project_list_state.dart';
 import 'state/providers.dart';
 import 'widgets/project_grid_view.dart';
-import 'widgets/project_view_mode_switcher.dart';
+import 'widgets/project_view_mode_toggle.dart';
 import 'widgets/project_list_view.dart';
 
 class ProjectsPage extends StatelessWidget {
@@ -19,7 +19,7 @@ class ProjectsPage extends StatelessWidget {
     return const AppScaffold(
       title: "Projects",
       actions: [
-        ProjectViewModeSwitcher(),
+        ProjectViewModeToggle(),
       ],
       body: ProjectsPageBody(),
       bottomNavigationBar: ProjectsPageBottomBar(),
