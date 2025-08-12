@@ -34,10 +34,7 @@ final class ProjectPrototypeService implements ProjectNetworkService {
                 ProjectDetails.fromJson(jsonItem as Map<String, dynamic>),
           )
           .toList();
-
-      print("Projects loaded successfully: ${_projects.length} items");
     } catch (e) {
-      print("Error loading projects: $e");
       _projects = []; // Ensure projects is empty on error
     }
   }
