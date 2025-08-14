@@ -106,6 +106,12 @@ class AppNavRail extends ConsumerWidget {
             showTooltip: !showLabels,
           ),
           _buildNavRailItem(
+            label: "Contact",
+            icon: Icons.contact_page_outlined,
+            selectedIcon: Icons.contact_page_rounded,
+            showTooltip: !showLabels,
+          ),
+          _buildNavRailItem(
             label: "Projects",
             icon: Icons.folder_outlined,
             selectedIcon: Icons.folder_rounded,
@@ -115,12 +121,6 @@ class AppNavRail extends ConsumerWidget {
             label: "Sleep",
             icon: Icons.bedtime_outlined,
             selectedIcon: Icons.bedtime_rounded,
-            showTooltip: !showLabels,
-          ),
-          _buildNavRailItem(
-            label: "Settings",
-            icon: Icons.settings_outlined,
-            selectedIcon: Icons.settings_rounded,
             showTooltip: !showLabels,
           ),
         ],

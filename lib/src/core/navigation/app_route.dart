@@ -1,5 +1,6 @@
 enum AppRoute {
   home,
+  contact,
   projects,
   sleep,
   projectDetail,

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:go_router/go_router.dart';
 
+import '../../features/contact/contact_page.dart';
 import '../../features/home/home_page.dart';
 import '../../features/projects/sections/project_detail/project_detail_page.dart';
 import '../../features/projects/sections/project_list/projects_page.dart';
@@ -16,6 +17,14 @@ final List<GoRoute> routes = [
     pageBuilder: (_, state) => fadeTransitionPage(
       state: state,
       child: const HomePage(),
+    ),
+  ),
+  GoRoute(
+    path: "/contact",
+    name: AppRoute.contact.name,
+    pageBuilder: (_, state) => fadeTransitionPage(
+      state: state,
+      child: const ContactPage(),
     ),
   ),
   GoRoute(

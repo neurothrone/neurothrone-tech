@@ -72,6 +72,13 @@ class DrawerMenuList extends ConsumerWidget {
           selected: currentRoute == AppRoute.home,
         ),
         DrawerListTile(
+          title: "Contact",
+          icon: Icons.contact_page_outlined,
+          selectedIcon: Icons.contact_page_rounded,
+          route: AppRoute.contact,
+          selected: currentRoute == AppRoute.contact,
+        ),
+        DrawerListTile(
           title: "Projects",
           icon: Icons.folder_outlined,
           selectedIcon: Icons.folder_rounded,
