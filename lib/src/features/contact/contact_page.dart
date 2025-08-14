@@ -13,6 +13,5 @@ class ContactPage extends StatelessWidget {
         child: Text("Contact"),
       ),
     );
-    ;
   }
 }
