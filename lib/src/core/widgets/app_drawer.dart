@@ -85,13 +85,6 @@ class DrawerMenuList extends ConsumerWidget {
           route: AppRoute.sleep,
           selected: currentRoute == AppRoute.sleep,
         ),
-        DrawerListTile(
-          title: "Settings",
-          icon: Icons.settings_outlined,
-          selectedIcon: Icons.settings_rounded,
-          route: AppRoute.settings,
-          selected: currentRoute == AppRoute.settings,
-        ),
       ],
     );
   }

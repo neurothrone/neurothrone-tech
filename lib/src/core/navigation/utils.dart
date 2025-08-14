@@ -10,7 +10,6 @@ AppRoute getActiveRoute(String location) {
 
   return switch (location) {
     "/sleep" => AppRoute.sleep,
-    "/settings" => AppRoute.settings,
     "/" => AppRoute.home,
     _ => AppRoute.unknown,
   };
@@ -25,8 +24,6 @@ int getNavRailIndex(AppRoute route) {
       return 1;
     case AppRoute.sleep:
       return 2;
-    case AppRoute.settings:
-      return 3;
     default:
       return 0; // Fallback to Home
   }
