@@ -1,30 +1,16 @@
 import 'package:flutter/material.dart';
 
 import '../../core/widgets/widgets.dart';
+import 'widgets/contact_form.dart';
 
 class ContactPage extends StatelessWidget {
   const ContactPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return AppScaffold(
+    return const AppScaffold(
       title: "Contact",
-      body: Center(
-        child: Text("Contact"),
-      ),
-    );
-  }
-}
-
-class ContactForm extends StatelessWidget {
-  const ContactForm({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Form(
-      child: Column(
-        children: [],
-      ),
+      body: ContactForm(),
     );
   }
 }
