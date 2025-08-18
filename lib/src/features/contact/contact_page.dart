@@ -10,7 +10,10 @@ class ContactPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return const AppScaffold(
       title: "Contact",
-      body: ContactForm(),
+      body: Padding(
+        padding: EdgeInsets.all(16),
+        child: ContactForm(),
+      ),
     );
   }
 }
