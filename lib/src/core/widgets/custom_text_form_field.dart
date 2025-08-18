@@ -56,13 +56,16 @@ class CustomTextFormField extends StatelessWidget {
       validator: validator,
       decoration: InputDecoration(
         suffixIcon: hasClearButton
-            ? IconButton(
-                onPressed: () {
-                  controller.clear();
-                  onCleared?.call();
-                },
-                icon: Icon(Icons.clear, color: theme.colorScheme.error),
-                tooltip: "Clear",
+            ? Padding(
+                padding: const EdgeInsets.only(right: 10.0),
+                child: IconButton(
+                  onPressed: () {
+                    controller.clear();
+                    onCleared?.call();
+                  },
+                  icon: Icon(Icons.clear, color: theme.colorScheme.error),
+                  tooltip: "Clear",
+                ),
               )
             : null,
         alignLabelWithHint: true,
@@ -82,9 +85,9 @@ class CustomTextFormField extends StatelessWidget {
           fontSize: 20.0,
           fontWeight: FontWeight.bold,
         ),
-        border: OutlineInputBorder(
-          borderSide: const BorderSide(
-            color: Colors.grey,
+        enabledBorder: OutlineInputBorder(
+          borderSide: BorderSide(
+            color: Theme.of(context).dividerColor,
             width: 1.0,
           ),
           borderRadius: BorderRadius.circular(AppDimensions.elevation),
