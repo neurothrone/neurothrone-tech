@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../core/widgets/custom_filled_button.dart';
 import '../../../core/widgets/widgets.dart';
 import '../state/contact_form_notifier.dart';
 import '../state/contact_form_state.dart';
@@ -67,7 +68,6 @@ class _ContactFormState extends ConsumerState<ContactForm> {
     return Form(
       key: _formKey,
       child: Column(
-        // crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           CustomTextFormField(
             controller: _emailController,
@@ -133,7 +133,10 @@ class _ContactFormState extends ConsumerState<ContactForm> {
             onCleared: () => _formController.setMessage(""),
           ),
           const SizedBox(height: 16),
-          // TODO: button to submit the form
+          CustomFilledButton(
+            label: "Submit",
+            onPressed: () {},
+          ),
         ],
       ),
     );
