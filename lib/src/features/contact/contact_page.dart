@@ -8,11 +8,22 @@ class ContactPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const AppScaffold(
+    return AppScaffold(
       title: "Contact",
-      body: Padding(
-        padding: EdgeInsets.all(16),
-        child: ContactForm(),
+      body: LayoutBuilder(
+        builder: (context, constraints) {
+          return CustomScrollView(
+            slivers: [
+              SliverFillRemaining(
+                hasScrollBody: false, // disables scrolling when content fits
+                child: Padding(
+                  padding: const EdgeInsets.all(16),
+                  child: ContactForm(),
+                ),
+              ),
+            ],
+          );
+        },
       ),
     );
   }
