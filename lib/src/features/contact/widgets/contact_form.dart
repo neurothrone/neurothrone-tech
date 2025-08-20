@@ -134,7 +134,7 @@ class _ContactFormState extends ConsumerState<ContactForm> {
           const SizedBox(height: 16),
           CustomFilledButton(
             label: "Submit",
-            onPressed: () {},
+            onPressed: () => _submitForm(formState),
           ),
         ],
       ),
